@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 public class StartActivity extends AppCompatActivity {
     private ImageView image;
-    private static  int SPLASH_SCREEN_TIMEOUT = 2000;
+    private static  int SPLASH_SCREEN_TIMEOUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
