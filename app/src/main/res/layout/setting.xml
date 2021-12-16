@@ -3,26 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#292424">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/setting_bar1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="로그아웃"
+        android:textColor="#E1D3D3"
         android:textSize="24sp"
+        android:background="@drawable/setting_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/setting_bar2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
-        android:text="회원정보"
+        android:text="회원정보수정"
+        android:background="@drawable/setting_bar"
+        android:textColor="#E1D3D3"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -30,26 +35,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/setting_bar3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
-        android:text="로그아웃"
+        android:text="기기등록"
+        android:background="@drawable/setting_bar"
+        android:textColor="#E1D3D3"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:text="버젼정보"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
