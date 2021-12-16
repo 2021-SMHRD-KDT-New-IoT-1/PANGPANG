@@ -7,7 +7,7 @@
     android:background="#292424">
 
     <TextView
-        android:id="@+id/setting_bar1"
+        android:id="@+id/set_logout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/setting_bar2"
+        android:id="@+id/set_modify"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/setting_bar3"
+        android:id="@+id/set_regist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"

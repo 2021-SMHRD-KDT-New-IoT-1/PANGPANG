@@ -6,7 +6,7 @@
     tools:context=".setting">
 
     <TextView
-        android:id="@+id/setting_bar1"
+        android:id="@+id/set_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -16,7 +16,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/setting_bar2"
+        android:id="@+id/set_modify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
@@ -26,7 +26,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/setting_bar3"
+        android:id="@+id/set_regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
