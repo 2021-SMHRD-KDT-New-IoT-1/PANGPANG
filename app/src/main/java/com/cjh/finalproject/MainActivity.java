@@ -3,13 +3,10 @@ package com.cjh.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         bnview = findViewById(R.id.bnview);
         layout = findViewById(R.id.layout);
-
-
 
 
         // 처음부터 1번 화면으로 나오게 만드는 방법
@@ -45,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
 
 
     }

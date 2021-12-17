@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@drawable/setting_bar"
+        android:onClick="onClick"
         android:text="로그아웃"
         android:textColor="#E1D3D3"
         android:textSize="24sp" />

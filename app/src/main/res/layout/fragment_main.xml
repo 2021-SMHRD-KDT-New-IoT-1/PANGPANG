@@ -39,6 +39,7 @@
         android:id="@+id/led_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
         android:fontFamily="@font/g_medium"
         android:text="OFF"
         android:textAlignment="center"

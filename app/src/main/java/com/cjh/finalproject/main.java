@@ -39,10 +39,12 @@ public class main extends Fragment {
                 if (check == "off") {
                     bg.setTint(Color.parseColor("#FBC02D"));
                     led_on.setText("ON");
+                    led_on.setTextColor(Color.parseColor("#FBC02D"));
                     check = "on";
                 } else {
                     bg.setTint(Color.parseColor("#E1D3D3"));
                     led_on.setText("OFF");
+                    led_on.setTextColor(Color.parseColor("#E1D3D3"));
                     check = "off";
                 }
             }
@@ -55,10 +57,12 @@ public class main extends Fragment {
                 if (check == "off") {
                     bg2.setTint(Color.parseColor("#D50000"));
                     rec_on.setText("ON");
+                    rec_on.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
                     bg2.setTint(Color.parseColor("#E1D3D3"));
                     rec_on.setText("OFF");
+                    rec_on.setTextColor(Color.parseColor("#E1D3D3"));
                     check = "off";
                 }
             }
