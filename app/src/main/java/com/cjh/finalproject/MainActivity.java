@@ -3,10 +3,13 @@ package com.cjh.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -24,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.layout);
 
 
-        // 처음부터 1번 화면으로 나오게 만드는 방법
+                // 처음부터 1번 화면으로 나오게 만드는 방법
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.layout, new main()).commit();
+
+
+
         bnview.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
