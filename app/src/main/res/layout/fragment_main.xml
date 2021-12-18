@@ -9,7 +9,7 @@
     tools:context=".main">
 
     <ImageButton
-        android:id="@+id/led_btn"
+        android:id="@+id/btn_led"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <ImageButton
-        android:id="@+id/rec_btn"
+        android:id="@+id/btn_rec"
         android:layout_width="180dp"
         android:layout_height="180dp"
 
@@ -36,41 +36,40 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/led_on"
+        android:id="@+id/tv_led"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
         android:fontFamily="@font/g_medium"
         android:text="OFF"
         android:textAlignment="center"
         android:textColor="#E1D3D3"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="@+id/led_btn"
-        app:layout_constraintStart_toStartOf="@+id/led_btn"
-        app:layout_constraintTop_toBottomOf="@+id/led_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_led"
+        app:layout_constraintStart_toStartOf="@+id/btn_led"
+        app:layout_constraintTop_toBottomOf="@+id/btn_led" />
 
     <TextView
-        android:id="@+id/rec_on"
+        android:id="@+id/tv_rec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_medium"
         android:text="OFF"
         android:textColor="#E1D3D3"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="@+id/rec_btn"
-        app:layout_constraintStart_toStartOf="@+id/rec_btn"
-        app:layout_constraintTop_toBottomOf="@+id/rec_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_rec"
+        app:layout_constraintStart_toStartOf="@+id/btn_rec"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rec" />
 
     <View
         android:id="@+id/view"
         android:layout_width="2dp"
         android:layout_height="180dp"
         android:background="#E1D3D3"
-        app:layout_constraintBottom_toBottomOf="@+id/led_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_led"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/led_btn"
+        app:layout_constraintTop_toTopOf="@+id/btn_led"
         app:layout_constraintVertical_bias="0.704" />
 
     <View
