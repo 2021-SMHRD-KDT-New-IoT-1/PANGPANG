@@ -38,6 +38,14 @@ public class setting extends Fragment {
             }
         });
 
+
+        // 기기등록
+        set_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().beginTransaction().replace(R.id.layout, new device()).commit();
+            }
+        });
         return v;
 
 
