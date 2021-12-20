@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -17,6 +18,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bnview;
     private FrameLayout layout;
+    private TextView tv_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         bnview = findViewById(R.id.bnview);
         layout = findViewById(R.id.layout);
-
+        tv_user = findViewById(R.id.tv_user);
 
                 // 처음부터 1번 화면으로 나오게 만드는 방법
         getSupportFragmentManager().beginTransaction()

@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.484" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="팡팡유치원님 환영합니다."
