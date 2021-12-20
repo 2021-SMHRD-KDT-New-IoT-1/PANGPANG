@@ -1,64 +1,135 @@
 package com.cjh.finalproject;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link main#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class main extends Fragment {
+    private ImageButton btn_led;
+    private ImageButton btn_rec;
+    private TextView tv_led;
+    private TextView tv_rec;
+    private TextView tv_progress;
+    private TextView tv_COdt;
+    String check = "off";
+    ProgressBar pb;
+    int max = 120;
+    int speed = 30; // 값 올릴수록 Progress 채워지는 속도 느려짐
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public main() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment main.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static main newInstance(String param1, String param2) {
-        main fragment = new main();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    int lv1 = 40, lv2 = 80;
+    int coLv1 = Color.parseColor("#C6FF00"), coLv2 = Color.parseColor("#FFFF00"), coLv3 = Color.parseColor("#F44336");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
+
+        btn_led = v.findViewById(R.id.btn_led);
+        btn_rec = v.findViewById(R.id.btn_rec);
+        tv_led = v.findViewById(R.id.tv_led);
+        tv_rec = v.findViewById(R.id.tv_rec);
+        tv_progress = v.findViewById(R.id.tv_progress);
+        tv_COdt = v.findViewById(R.id.tv_COdt);
+        pb = (ProgressBar) v.findViewById(R.id.progress_bar);
+        pb.setProgress(70);
+
+        new PrograssThread(max).start();
+
+        btn_led.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable bg = btn_led.getBackground();
+                if (check == "off") {
+                    bg.setTint(Color.parseColor("#FBC02D"));
+                    tv_led.setText("ON");
+                    tv_led.setTextColor(Color.parseColor("#FBC02D"));
+                    check = "on";
+
+                } else {
+                    bg.setTint(Color.parseColor("#E1D3D3"));
+                    tv_led.setText("OFF");
+                    tv_led.setTextColor(Color.parseColor("#E1D3D3"));
+                    check = "off";
+                }
+            }
+        });
+
+        btn_rec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable bg2 = btn_rec.getBackground();
+                if (check == "off") {
+                    bg2.setTint(Color.parseColor("#D50000"));
+                    tv_rec.setText("ON");
+                    tv_rec.setTextColor(Color.parseColor("#D50000"));
+                    check = "on";
+                } else {
+                    bg2.setTint(Color.parseColor("#E1D3D3"));
+                    tv_rec.setText("OFF");
+                    tv_rec.setTextColor(Color.parseColor("#E1D3D3"));
+                    check = "off";
+                }
+            }
+        });
+
+        return v;
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            pb.setProgress(msg.arg1);
+            if (msg.arg1 < lv1) {
+                pb.getProgressDrawable().setColorFilter(coLv1, PorterDuff.Mode.ADD);
+            } else if (msg.arg1 < lv2) {
+                pb.getProgressDrawable().setColorFilter(coLv2, PorterDuff.Mode.ADD);
+                tv_progress.setText("주의");
+                tv_COdt.setText("500ppm");
+            } else {
+                pb.getProgressDrawable().setColorFilter(coLv3, PorterDuff.Mode.ADD);
+                tv_progress.setText("위험");
+                tv_COdt.setText("1000ppm");
+            }
+        }
+    };
+
+    class PrograssThread extends Thread {
+        private int max;
+
+        PrograssThread(int max) {
+            this.max = max;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < max; i++) {
+                Message msg = new Message();
+                msg.arg1 = i;
+
+                try {
+                    Thread.sleep(speed);
+                    handler.sendMessage(msg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

@@ -5,105 +5,141 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D3D3D3"
+    android:background="#292424"
     tools:context=".main">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="428dp"
-        android:layout_height="291dp"
-        android:background="#D3D3D3"
-        android:src="@drawable/roundsquare1"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline7"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/roundsquare1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.98" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
-
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_led"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@android:color/transparent"
+
+        android:layout_marginTop="24dp"
+        android:background="@drawable/led"
+        android:backgroundTint="#E1D3D3"
         android:scaleType="centerInside"
-        android:src="@drawable/led"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.354" />
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_rec"
         android:layout_width="180dp"
-        android:layout_height="169dp"
-        android:backgroundTint="@android:color/transparent"
+        android:layout_height="180dp"
+
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rec"
+        android:backgroundTint="#E1D3D3"
         android:scaleType="centerInside"
-        android:src="@drawable/rec"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_led"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ON"
+        android:fontFamily="@font/g_medium"
+        android:text="OFF"
+        android:textAlignment="center"
+        android:textColor="#E1D3D3"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_led"
+        app:layout_constraintStart_toStartOf="@+id/btn_led"
+        app:layout_constraintTop_toBottomOf="@+id/btn_led" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tv_rec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ON"
+        android:fontFamily="@font/g_medium"
+        android:text="OFF"
+        android:textColor="#E1D3D3"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.694"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_rec"
+        app:layout_constraintStart_toStartOf="@+id/btn_rec"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rec" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="2dp"
         android:layout_height="180dp"
-        android:background="#808080"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline7"
-        app:layout_constraintVertical_bias="0.702" />
+        android:background="#E1D3D3"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_led"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_led"
+        app:layout_constraintVertical_bias="0.704" />
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/roundsquare1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/g_medium"
+        android:text="일산화탄소수치:"
+        android:textColor="#E1D3D3"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+
+    <TextView
+        android:id="@+id/tv_COdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/g_medium"
+        android:text="0.0ppm"
+        android:textColor="#E1D3D3"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+
+
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_medium"
+        android:text="좋음"
+        android:textColor="#E1D3D3"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progress="0"
+        android:progressBackgroundTint="#FBE7C6"
+        android:progressDrawable="@drawable/progressbar"
+        android:progressTint="#EDBF41"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
