@@ -9,6 +9,7 @@ import android.widget.EditText;
 public class joinActivity extends AppCompatActivity {
     private EditText join_id;
     private EditText join_pw;
+    private EditText join_serialnumber;
     private Button join_button;
 
     @Override
@@ -19,6 +20,7 @@ public class joinActivity extends AppCompatActivity {
         join_id = findViewById(R.id.login_id);
         join_pw = findViewById(R.id.join_pw);
         join_button = findViewById(R.id.join_button);
+        join_serialnumber = findViewById(R.id.join_serialnumber);
 
 
     }
