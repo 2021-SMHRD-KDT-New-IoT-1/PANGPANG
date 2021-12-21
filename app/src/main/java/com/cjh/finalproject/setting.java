@@ -39,10 +39,18 @@ public class setting extends Fragment {
                 setting.this.startActivity(intent);
             }
         });
+
         set_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getParentFragmentManager().beginTransaction().replace(R.id.layout, new RefactorFragment()).commit();
+            }
+        });
+
+        set_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().beginTransaction().replace(R.id.layout, new device()).commit();
             }
         });
         return v;
