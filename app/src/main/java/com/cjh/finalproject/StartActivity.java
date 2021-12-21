@@ -10,14 +10,16 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class StartActivity extends AppCompatActivity {
-    private ImageView image;
-    private TextView textView5;
-    private TextView textView15;
-    private static  int SPLASH_SCREEN_TIMEOUT = 2000;
+    private Animation topAnim;
+    private Animation topAnim2;
+    private TextView t;
+    private TextView t2;
+    private static  int SPLASH_SCREEN_TIMEOUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,18 +27,19 @@ public class StartActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_start);
 
-        Animation fadeOut = new AlphaAnimation(1,0);
-        fadeOut.setInterpolator(new AccelerateInterpolator());
-        fadeOut.setStartOffset(1500);
+        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        topAnim2 = AnimationUtils.loadAnimation(this,R.anim.top_animation2);
 
-        image = findViewById(R.id.imageView);
-        textView5 =findViewById(R.id.textView5);
-        textView15 =findViewById(R.id.textView15);
-        textView5.setAnimation(fadeOut);
-        textView15.setAnimation(fadeOut);
+        t = findViewById(R.id.textView);
+        t2 = findViewById(R.id.textView2);
+
+
+        t.setAnimation(topAnim);
+        t2.setAnimation(topAnim2);
+
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
