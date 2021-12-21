@@ -53,6 +53,21 @@
         android:textColor="#000000"
         android:textColorHint="#000000" />
 
+    <EditText
+        android:id="@+id/join_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/input_text"
+        android:fontFamily="@font/g_medium"
+        android:hint="닉네임"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
+
     <Button
         android:id="@+id/join_button"
         android:layout_width="match_parent"

@@ -22,11 +22,11 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class loginActivity extends AppCompatActivity {
-    private EditText login_id;
-    private EditText login_pw;
-    private Button button_join;
-    private Button button_login;
+public class LoginActivity2 extends AppCompatActivity {
+    private EditText login_id1;
+    private EditText login_pw1;
+    private Button button_join1;
+    private Button button_login1;
 
     RequestQueue requestQueue; //전송하는 통로
     StringRequest stringRequest_login; //전송할 데이터, 설정(get/post) 등 담는 바구니!
@@ -37,31 +37,31 @@ public class loginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        login_id = findViewById(R.id.login_id);
-        login_pw = findViewById(R.id.login_pw);
-        button_join = findViewById(R.id.button_join);
-        button_login = findViewById(R.id.button_login);
+        login_id1 = findViewById(R.id.login_id);
+        login_pw1 = findViewById(R.id.login_pw);
+        button_join1 = findViewById(R.id.button_join);
+        button_login1 = findViewById(R.id.button_login);
 
-        button_join.setOnClickListener(new View.OnClickListener() {
+        button_join1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(loginActivity.this, joinActivity.class);
+                Intent intent = new Intent(LoginActivity2.this, activity_join2.class);
                 startActivity(intent);
             }
         });
 
 
-        button_login.setOnClickListener(new View.OnClickListener() {
+        button_login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(login_id.equals("abc")&&login_pw.equals("1234")){
-                    Toast.makeText(loginActivity.this,"로그인 성공!",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(loginActivity.this,MainActivity.class);
-                    intent.putExtra("name", login_id.getText().toString());
+                if(login_id1.equals("abc")&&login_pw1.equals("1234")){
+                    Toast.makeText(LoginActivity2.this,"로그인 성공!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
+                    intent.putExtra("name", login_id1.getText().toString());
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(loginActivity.this,"ID와 PW를 다시 확인해!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity2.this,"ID와 PW를 다시 확인해!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -82,7 +82,7 @@ public class loginActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.equals("true")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(loginActivity.this,MainActivity.class);
+                    Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "ID를 확인해!!", Toast.LENGTH_SHORT).show();
@@ -98,8 +98,8 @@ public class loginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("id", login_id.getText().toString());
-                params.put("pw", login_pw.getText().toString());
+                params.put("id", login_id1.getText().toString());
+                params.put("pw", login_pw1.getText().toString());
 
                 return params;
             }

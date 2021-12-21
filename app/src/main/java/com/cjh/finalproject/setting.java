@@ -35,7 +35,7 @@ public class setting extends Fragment {
         set_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),loginActivity.class);
+                Intent intent = new Intent(getContext(),LoginActivity2.class);
                 setting.this.startActivity(intent);
             }
         });
