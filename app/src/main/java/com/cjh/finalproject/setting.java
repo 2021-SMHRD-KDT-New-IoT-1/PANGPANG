@@ -46,7 +46,6 @@ public class setting extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.layout, new RefactorFragment()).commit();
             }
         });
-
         set_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

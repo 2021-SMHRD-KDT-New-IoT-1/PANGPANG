@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_foreground" />
@@ -49,13 +49,14 @@
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
     <View
-        android:id="@+id/view3"
+        android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:background="#E1D3D3"
+        android:layout_height="3dp"
+        android:layout_marginTop="4dp"
+        android:background="#88FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/black_date" />
+        app:layout_constraintTop_toBottomOf="@+id/img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
