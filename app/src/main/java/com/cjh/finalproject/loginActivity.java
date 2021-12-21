@@ -67,7 +67,7 @@ public class loginActivity extends AppCompatActivity {
         });
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url_login = "http://192.168.0.13:8082/MemberServer2/LoginServlet";
+        String url_login = "http://172.30.1.28:8082/MemberServer2/LoginServlet";
 
         findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override

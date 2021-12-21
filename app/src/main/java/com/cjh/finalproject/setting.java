@@ -39,6 +39,7 @@ public class setting extends Fragment {
                 setting.this.startActivity(intent);
             }
         });
+
         set_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
