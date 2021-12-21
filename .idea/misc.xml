@@ -51,9 +51,15 @@
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/activity_start.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/data.xml" value="0.2046875" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_blackbox.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_device2.xml" value="0.2046875" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_logout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_refactor.xml" value="0.2046875" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/fragment_setting.xml" value="0.2046875" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/joinrefactor.xml" value="0.2046875" />
+        <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/setting.xml" value="0.2046875" />
         <entry key="..\:/Users/smhrd/Desktop/PANGPANG/app/src/main/res/layout/splash_activity.xml" value="0.36614583333333334" />
       </map>
     </option>
