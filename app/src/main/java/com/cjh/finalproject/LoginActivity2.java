@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class LoginActivity2 extends AppCompatActivity {
     private EditText login_id1;
-    private EditText login_pw1;
+    private EditText login_pw2;
     private Button button_join1;
     private Button button_login1;
 
@@ -38,7 +38,7 @@ public class LoginActivity2 extends AppCompatActivity {
 
 
         login_id1 = findViewById(R.id.login_id1);
-        login_pw1 = findViewById(R.id.login_pw2);
+        login_pw2 = findViewById(R.id.login_pw2);
         button_join1 = findViewById(R.id.button_join1);
         button_login1 = findViewById(R.id.button_login1);
 
@@ -54,7 +54,7 @@ public class LoginActivity2 extends AppCompatActivity {
         button_login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(login_id1.equals("abc")&&login_pw1.equals("1234")){
+                if(login_id1.equals("abc")&&login_pw2.equals("1234")){
                     Toast.makeText(LoginActivity2.this,"로그인 성공!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
                     intent.putExtra("name", login_id1.getText().toString());
@@ -72,6 +72,7 @@ public class LoginActivity2 extends AppCompatActivity {
         findViewById(R.id.button_login1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 requestQueue.add(stringRequest_login);
             }
         });
@@ -99,7 +100,7 @@ public class LoginActivity2 extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("id", login_id1.getText().toString());
-                params.put("pw", login_pw1.getText().toString());
+                params.put("pw", login_pw2.getText().toString());
 
                 return params;
             }
