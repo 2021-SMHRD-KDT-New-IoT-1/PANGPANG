@@ -25,6 +25,7 @@ import java.util.Map;
 public class joinActivity extends AppCompatActivity {
     EditText join_id;
     EditText join_pw;
+    EditText join_nickname;
 
 
     RequestQueue requestQueue; //전송하는 통로
@@ -38,6 +39,7 @@ public class joinActivity extends AppCompatActivity {
 
         join_id = findViewById(R.id.join_id);
         join_pw = findViewById(R.id.join_pw);
+        join_nickname = findViewById(R.id.join_nickname);
 
 
         // 1.통로생성~
@@ -75,6 +77,7 @@ public class joinActivity extends AppCompatActivity {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("id", join_id.getText().toString());
                 params.put("pw", join_pw.getText().toString());
+                params.put("nick", join_nickname.getText().toString());
 
                 return params;
             }
