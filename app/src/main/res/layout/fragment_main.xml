@@ -8,6 +8,29 @@
     android:background="@drawable/main10"
     tools:context=".main">
 
+    <TextView
+        android:id="@+id/tv_gps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_medium"
+        android:text="광주광역시 남구 송하동"
+        android:textColor="#E1D3D3"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/btn_rec"
+        app:layout_constraintStart_toStartOf="@+id/btn_rec"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/img_weather"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/wea_sunny"
+        app:layout_constraintEnd_toEndOf="@+id/tv_gps"
+        app:layout_constraintStart_toStartOf="@+id/tv_gps"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gps" />
+
     <ImageButton
         android:id="@+id/btn_led"
         android:layout_width="170dp"
@@ -18,10 +41,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.851" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <ImageButton
         android:id="@+id/btn_rec"
@@ -31,9 +54,11 @@
         android:background="@drawable/rec"
         android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_led"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_led"
         app:layout_constraintVertical_bias="0.85" />
 
     <TextView
@@ -68,9 +93,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/g_medium"
-        android:text="일산화탄소수치:"
+        android:text="일산화탄소수치"
         android:textColor="#E1D3D3"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
         app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
@@ -78,14 +104,14 @@
         android:id="@+id/tv_COdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/g_medium"
         android:text="0.0ppm"
         android:textColor="#E1D3D3"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
 
@@ -113,11 +139,33 @@
         android:progressDrawable="@drawable/progressbar"
         android:progressTint="#EDBF41"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_led"
+        app:layout_constraintStart_toStartOf="@+id/btn_led"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172"
-        />
+        app:layout_constraintVertical_bias="0.20999998" />
+
+    <TextView
+        android:id="@+id/tv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0°C"
+        android:textColor="#E1D3D3"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_weather"
+        app:layout_constraintStart_toStartOf="@+id/img_weather"
+        app:layout_constraintTop_toBottomOf="@+id/img_weather" />
+
+    <TextView
+        android:id="@+id/tv_min_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0°C / 0°C"
+        android:textColor="#E1D3D3"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/tv_temp"
+        app:layout_constraintStart_toStartOf="@+id/tv_temp"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
