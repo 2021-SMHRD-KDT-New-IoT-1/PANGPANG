@@ -22,9 +22,10 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class joinActivity extends AppCompatActivity {
-    EditText join_id;
-    EditText join_pw;
+public class activity_join2 extends AppCompatActivity {
+    EditText join_id1;
+    EditText join_pw1;
+    EditText join_nickname1;
 
 
     RequestQueue requestQueue; //전송하는 통로
@@ -34,10 +35,11 @@ public class joinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join);
+        setContentView(R.layout.activity_join2);
 
-        join_id = findViewById(R.id.join_id);
-        join_pw = findViewById(R.id.join_pw);
+        join_id1 = findViewById(R.id.join_id1);
+        join_pw1 = findViewById(R.id.join_pw1);
+        join_nickname1 = findViewById(R.id.join_nickname1);
 
 
         // 1.통로생성~
@@ -55,7 +57,7 @@ public class joinActivity extends AppCompatActivity {
                 //실패시 ID를 다시 확인하세요 라고 Toast메세지 띄우기
                 if(response.equals("1")){
                     Toast.makeText(getApplicationContext(),"회원가입 성공!",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(joinActivity.this, loginActivity.class);
+                    Intent intent = new Intent(activity_join2.this, LoginActivity2.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "ID를 확인해!!",Toast.LENGTH_SHORT).show();
@@ -73,14 +75,15 @@ public class joinActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("id", join_id.getText().toString());
-                params.put("pw", join_pw.getText().toString());
+                params.put("id", join_id1.getText().toString());
+                params.put("pw", join_pw1.getText().toString());
+                params.put("nick", join_nickname1.getText().toString());
 
                 return params;
             }
         };
 
-        findViewById(R.id.join_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.join_button1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestQueue.add(stringRequest_join);

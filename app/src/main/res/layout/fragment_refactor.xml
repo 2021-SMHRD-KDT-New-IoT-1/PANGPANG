@@ -1,59 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
-    android:backgroundTintMode="add"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".joinRefactor">
-
-
-
-    <EditText
-        android:id="@+id/login_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/input_text"
-        android:fontFamily="@font/g_medium"
-        android:hint="변경할 이메일"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textColorHint="#000000" />
-
-    <EditText
-        android:id="@+id/login_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/input_text"
-        android:fontFamily="@font/g_medium"
-        android:hint="변경할 비밀번호"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000" />
+    tools:context=".RefactorFragment">
 
     <Button
-        android:id="@+id/button_login"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_Refactor"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/button_login"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/setting_bar"
         android:fontFamily="@font/g_medium"
+        android:onClick="onClick"
         android:text="수정"
-        android:textColor="#ffffff"
-        android:textSize="17sp" />
+        android:textColor="#E1D3D3"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_pwR" />
 
+    <EditText
+        android:id="@+id/edt_idR"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/joinrefactor_bar"
+        android:ems="10"
+        android:fontFamily="@font/g_medium"
+        android:hint="수정할 아이디"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:textColor="#E1D3D3"
+        android:textColorHint="#E1D3D3"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/edt_pwR"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/joinrefactor_bar"
+        android:ems="10"
+        android:fontFamily="@font/g_medium"
+        android:hint="수정할 비밀번호"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:textColor="#E1D3D3"
+        android:textColorHint="#E1D3D3"
+        android:textColorLink="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_idR" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
