@@ -63,9 +63,9 @@ public class main extends Fragment {
                     check = "on";
 
                 } else {
-                    bg.setTint(Color.parseColor("#E1D3D3"));
+                    bg.setTint(Color.parseColor("#FFFFFF"));
                     tv_led.setText("OFF");
-                    tv_led.setTextColor(Color.parseColor("#E1D3D3"));
+                    tv_led.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
                 }
             }
@@ -81,9 +81,9 @@ public class main extends Fragment {
                     tv_rec.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
-                    bg2.setTint(Color.parseColor("#E1D3D3"));
+                    bg2.setTint(Color.parseColor("#FFFFFF"));
                     tv_rec.setText("OFF");
-                    tv_rec.setTextColor(Color.parseColor("#E1D3D3"));
+                    tv_rec.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
                 }
             }

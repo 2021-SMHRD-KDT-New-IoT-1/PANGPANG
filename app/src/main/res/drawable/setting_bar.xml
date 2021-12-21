@@ -2,7 +2,11 @@
 
     <item android:state_pressed="false">
         <shape>
-            <solid android:color="#292424"/>
+            <gradient
+                android:startColor="#00000428"
+
+                android:endColor="#00004E92"
+                />
             <corners
                 android:radius="5sp"/>
             <stroke
@@ -14,7 +18,11 @@
 
     <item android:state_pressed="true" >
         <shape xmlns:android="http://schemas.android.com/apk/res/android" >
-            <solid android:color="#292424"/>
+            <gradient
+                android:startColor="#14000428"
+
+                android:endColor="#11004E92"
+                />
             <corners
                 android:radius="5sp"/>
             <stroke

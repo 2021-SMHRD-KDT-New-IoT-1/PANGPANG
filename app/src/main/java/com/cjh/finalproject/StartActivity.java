@@ -11,9 +11,12 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class StartActivity extends AppCompatActivity {
     private ImageView image;
+    private TextView textView5;
+    private TextView textView15;
     private static  int SPLASH_SCREEN_TIMEOUT = 2000;
 
     @Override
@@ -30,8 +33,10 @@ public class StartActivity extends AppCompatActivity {
         fadeOut.setStartOffset(1500);
 
         image = findViewById(R.id.imageView);
-
-        image.setAnimation(fadeOut);
+        textView5 =findViewById(R.id.textView5);
+        textView15 =findViewById(R.id.textView15);
+        textView5.setAnimation(fadeOut);
+        textView15.setAnimation(fadeOut);
 
         new Handler().postDelayed(new Runnable() {
             @Override

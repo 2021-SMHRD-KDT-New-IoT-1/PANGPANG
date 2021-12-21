@@ -5,35 +5,36 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#292424"
+    android:background="@drawable/main10"
     tools:context=".main">
 
     <ImageButton
         android:id="@+id/btn_led"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
 
-        android:layout_marginTop="24dp"
         android:background="@drawable/led"
-        android:backgroundTint="#E1D3D3"
+        android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.851" />
 
     <ImageButton
         android:id="@+id/btn_rec"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
 
-        android:layout_marginEnd="16dp"
         android:background="@drawable/rec"
-        android:backgroundTint="#E1D3D3"
+        android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
 
     <TextView
         android:id="@+id/tv_led"
@@ -42,7 +43,7 @@
         android:fontFamily="@font/g_medium"
         android:text="OFF"
         android:textAlignment="center"
-        android:textColor="#E1D3D3"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_led"
         app:layout_constraintStart_toStartOf="@+id/btn_led"
@@ -54,34 +55,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_medium"
         android:text="OFF"
-        android:textColor="#E1D3D3"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_rec"
         app:layout_constraintStart_toStartOf="@+id/btn_rec"
         app:layout_constraintTop_toBottomOf="@+id/btn_rec" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="2dp"
-        android:layout_height="180dp"
-        android:background="#E1D3D3"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_led"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_led"
-        app:layout_constraintVertical_bias="0.704" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/roundsquare1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
