@@ -59,7 +59,7 @@
         android:ems="10"
         android:fontFamily="@font/g_medium"
         android:hint="비밀번호"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColorHint="#000000"
