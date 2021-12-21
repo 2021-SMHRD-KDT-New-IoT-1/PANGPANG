@@ -34,13 +34,13 @@ public class LoginActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
 
-        login_id1 = findViewById(R.id.login_id);
-        login_pw1 = findViewById(R.id.login_pw);
-        button_join1 = findViewById(R.id.button_join);
-        button_login1 = findViewById(R.id.button_login);
+        login_id1 = findViewById(R.id.login_id1);
+        login_pw1 = findViewById(R.id.login_pw2);
+        button_join1 = findViewById(R.id.button_join1);
+        button_login1 = findViewById(R.id.button_login1);
 
         button_join1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class LoginActivity2 extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         String url_login = "http://172.30.1.28:8082/MemberServer2/LoginServlet";
 
-        findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_login1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestQueue.add(stringRequest_login);
