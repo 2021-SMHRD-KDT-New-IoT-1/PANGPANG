@@ -35,9 +35,7 @@
         <activity
             android:name=".StartActivity"
             android:exported="true" />
-        <activity
-            android:name=".joinActivity"
-            android:exported="false" /> <!-- http 라이브러리 사용 -->
+        <!-- http 라이브러리 사용 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -49,9 +47,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity
-            android:name=".loginActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
