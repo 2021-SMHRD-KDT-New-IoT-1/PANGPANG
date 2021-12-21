@@ -13,24 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_bold"
-        android:text="광주광역시 남구 송하동"
+        android:text="송하동"
         android:textColor="#E1D3D3"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_COdt"
         app:layout_constraintEnd_toEndOf="@+id/btn_rec"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/btn_rec"
-        app:layout_constraintTop_toTopOf="@+id/progress_bar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_min_max" />
 
     <ImageView
         android:id="@+id/img_weather"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/wea_sunny"
+        app:layout_constraintBottom_toTopOf="@+id/tv_temp"
         app:layout_constraintEnd_toEndOf="@+id/tv_gps"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_gps"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gps" />
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/btn_led"
@@ -115,7 +117,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
-
     <TextView
         android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
@@ -149,12 +150,14 @@
         android:id="@+id/tv_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/g_medium"
+        android:fontFamily="@font/abeezee"
         android:text="0°C"
         android:textColor="#E1D3D3"
         android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_min_max"
         app:layout_constraintEnd_toEndOf="@+id/img_weather"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/img_weather"
         app:layout_constraintTop_toBottomOf="@+id/img_weather" />
 
@@ -162,13 +165,14 @@
         android:id="@+id/tv_min_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/g_medium"
+        android:fontFamily="@font/abeezee"
         android:text="0°C / 0°C"
         android:textColor="#E1D3D3"
-        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_gps"
         app:layout_constraintEnd_toEndOf="@+id/tv_temp"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_temp"
-        app:layout_constraintTop_toTopOf="@+id/progress_bar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_temp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
