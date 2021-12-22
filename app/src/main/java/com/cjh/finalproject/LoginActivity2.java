@@ -67,7 +67,6 @@ public class LoginActivity2 extends AppCompatActivity {
         stringRequest_login = new StringRequest(Request.Method.POST, url_login, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
 
                 if (!response.equals("null")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();

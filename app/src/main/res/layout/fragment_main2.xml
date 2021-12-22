@@ -71,7 +71,7 @@
         android:layout_height="120dp"
 
         android:background="@drawable/led"
-        android:backgroundTint="@color/button_text"
+        android:backgroundTint="@color/main_color"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="@+id/imageView7"
@@ -84,7 +84,7 @@
         android:layout_height="120dp"
 
         android:background="@drawable/rec"
-        android:backgroundTint="@color/button_text"
+        android:backgroundTint="@color/main_color"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="@+id/imageView6"
@@ -198,13 +198,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
