@@ -69,8 +69,6 @@
         android:text="팡팡유치원님 환영합니다."
         android:textColor="@color/main_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
 
