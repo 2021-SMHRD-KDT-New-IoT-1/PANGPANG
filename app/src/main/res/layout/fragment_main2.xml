@@ -10,42 +10,32 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:src="@drawable/background_main"
+        android:layout_width="350dp"
+        android:layout_height="190dp"
+        android:src="@drawable/background_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:src="@drawable/background_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:src="@drawable/background_main"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="@+id/imageView3" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:src="@drawable/background_main"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/background_main"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
     <TextView
@@ -55,7 +45,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/g_medium"
         android:text="남구 송하동"
-        android:textColor="@color/main_color"
+        android:textColor="@color/button_text"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_temp"
         app:layout_constraintStart_toStartOf="@+id/tv_temp"
@@ -66,16 +56,17 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/wea_sunny"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.2" />
 
     <ImageButton
         android:id="@+id/btn_led"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
 
         android:background="@drawable/led"
         android:backgroundTint="@color/button_text"
@@ -87,8 +78,8 @@
 
     <ImageButton
         android:id="@+id/btn_rec"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
 
         android:background="@drawable/rec"
         android:backgroundTint="@color/button_text"
@@ -133,7 +124,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/g_medium"
         android:text="일산화탄소수치"
-        android:textColor="@color/main_color"
+        android:textColor="@color/button_text"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
@@ -143,14 +134,14 @@
         android:id="@+id/tv_COdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/g_medium"
         android:text="0.0ppm"
-        android:textColor="@color/main_color"
+        android:textColor="@color/button_text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
 
     <TextView
@@ -160,7 +151,7 @@
         android:fontFamily="@font/g_medium"
         android:text="좋음"
         android:textColor="@color/button_text"
-        android:textSize="34sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
@@ -168,8 +159,8 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:indeterminateOnly="false"
         android:max="100"
         android:progress="0"
@@ -178,36 +169,37 @@
         android:progressTint="#EDBF41"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/tv_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/g_medium"
         android:text="0°C"
-        android:textColor="@color/main_color"
+        android:textColor="@color/button_text"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/img_weather"
+        app:layout_constraintStart_toStartOf="@+id/img_weather"
+        app:layout_constraintTop_toBottomOf="@+id/img_weather" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.76" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

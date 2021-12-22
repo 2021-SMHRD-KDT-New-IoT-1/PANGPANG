@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/tab1"
-        android:icon="@drawable/start"
-        android:title="메인"/>
+        android:icon="@drawable/home_re"
+        android:title="메인" />
     <item
         android:id="@+id/tab2"
-        android:icon="@drawable/setup2"
-        android:title="설정" />
+        android:icon="@drawable/camera_re"
+        android:title="블랙박스" />
     <item
         android:id="@+id/tab3"
-        android:icon="@drawable/camrea"
-        android:title="블랙박스" />
+        android:icon="@drawable/more_re"
+        android:title="설정" />
 </menu>
