@@ -11,22 +11,30 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 public class main extends Fragment {
+
     private ImageButton btn_led;
     private ImageButton btn_rec;
+
     private TextView tv_led;
     private TextView tv_rec;
     private TextView tv_progress;
     private TextView tv_COdt;
+
+    private ImageView img_led;
+    private ImageView img_rec;
+
     String check = "off";
     ProgressBar pb;
     int max = 120;
@@ -43,10 +51,15 @@ public class main extends Fragment {
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_rec = v.findViewById(R.id.btn_rec);
+
         tv_led = v.findViewById(R.id.tv_led);
         tv_rec = v.findViewById(R.id.tv_rec);
         tv_progress = v.findViewById(R.id.tv_progress);
         tv_COdt = v.findViewById(R.id.tv_COdt);
+
+        img_led = v.findViewById(R.id.img_led);
+        img_rec = v.findViewById(R.id.img_rec);
+
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
         pb.setProgress(70);
 
@@ -56,14 +69,16 @@ public class main extends Fragment {
             @Override
             public void onClick(View v) {
                 Drawable bg = btn_led.getBackground();
-                if (check == "off") {
+                if (check.equals("off")) {
                     bg.setTint(Color.parseColor("#FBC02D"));
+                    img_led.setImageResource(R.drawable.background_choice);
                     tv_led.setText("ON");
                     tv_led.setTextColor(Color.parseColor("#FBC02D"));
                     check = "on";
 
                 } else {
                     bg.setTint(Color.parseColor("#FFFFFF"));
+                    img_led.setImageResource(R.drawable.background_main);
                     tv_led.setText("OFF");
                     tv_led.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
@@ -77,11 +92,13 @@ public class main extends Fragment {
                 Drawable bg2 = btn_rec.getBackground();
                 if (check == "off") {
                     bg2.setTint(Color.parseColor("#D50000"));
+                    img_rec.setImageResource(R.drawable.background_choice2);
                     tv_rec.setText("ON");
                     tv_rec.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
                     bg2.setTint(Color.parseColor("#FFFFFF"));
+                    img_rec.setImageResource(R.drawable.background_main);
                     tv_rec.setText("OFF");
                     tv_rec.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
