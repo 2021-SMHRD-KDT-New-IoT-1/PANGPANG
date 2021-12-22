@@ -73,6 +73,7 @@ public class LoginActivity2 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity2.this,MainActivity.class).putExtra("nick", response);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "ID를 확인해!!", Toast.LENGTH_SHORT).show();
                 }
