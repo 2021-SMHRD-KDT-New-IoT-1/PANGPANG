@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.layout);
         tv_user = findViewById(R.id.tv_user);
 
+        tv_user.setText(getIntent().getStringExtra("nick") + "님 환영합니다!");
+
                 // 처음부터 1번 화면으로 나오게 만드는 방법
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.layout, new main()).commit();
