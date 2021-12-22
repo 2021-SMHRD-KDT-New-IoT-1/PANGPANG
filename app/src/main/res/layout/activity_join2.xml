@@ -14,7 +14,7 @@
         android:layout_marginEnd="88dp"
         android:fontFamily="@font/g_light"
         android:text="PANG.C"
-        android:textColor="#E1D3D3"
+        android:textColor="@color/main_color"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,12 +24,12 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/start"
-        android:backgroundTint="#E1D3D3"
+        android:backgroundTint="@color/main_color"
         app:layout_constraintEnd_toStartOf="@+id/textView17"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,31 +49,15 @@
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHighlight="@color/main_color"
         android:textColorHint="@color/main_color"
+        android:textColorLink="@color/main_color"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/join_pw1"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/background_edt"
-        android:ems="10"
-        android:fontFamily="@font/g_medium"
-        android:hint="비밀번호"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColorHint="@color/main_color"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/join_id1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/join_id1"
-        app:layout_constraintTop_toBottomOf="@+id/join_id1" />
 
     <EditText
         android:id="@+id/join_serialnumber1"
@@ -87,12 +71,14 @@
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHighlight="@color/main_color"
         android:textColorHint="@color/main_color"
+        android:textColorLink="@color/main_color"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/join_pw1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/join_pw1"
-        app:layout_constraintTop_toBottomOf="@+id/join_pw1" />
+        app:layout_constraintEnd_toEndOf="@+id/join_nickname1"
+        app:layout_constraintStart_toStartOf="@+id/join_nickname1"
+        app:layout_constraintTop_toBottomOf="@+id/join_nickname1" />
 
     <EditText
         android:id="@+id/join_nickname1"
@@ -106,12 +92,15 @@
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHighlight="@color/main_color"
         android:textColorHint="@color/main_color"
+        android:textColorLink="@color/main_color"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/join_serialnumber1"
+        app:layout_constraintEnd_toEndOf="@+id/join_pw1"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/join_serialnumber1"
-        app:layout_constraintTop_toBottomOf="@+id/join_serialnumber1" />
+        app:layout_constraintStart_toStartOf="@+id/join_pw1"
+        app:layout_constraintTop_toBottomOf="@+id/join_pw1" />
 
     <Button
         android:id="@+id/join_button1"
@@ -125,5 +114,27 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/join_nickname1"
         app:layout_constraintStart_toStartOf="@+id/join_nickname1"
-        app:layout_constraintTop_toBottomOf="@+id/join_nickname1" />
+        app:layout_constraintTop_toBottomOf="@+id/join_serialnumber1" />
+
+    <EditText
+        android:id="@+id/join_pw1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_edt"
+        android:ems="10"
+        android:fontFamily="@font/g_medium"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHighlight="@color/main_color"
+        android:textColorHint="@color/main_color"
+        android:textColorLink="@color/main_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/join_id1"
+        app:layout_constraintStart_toStartOf="@+id/join_id1"
+        app:layout_constraintTop_toBottomOf="@+id/join_id1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

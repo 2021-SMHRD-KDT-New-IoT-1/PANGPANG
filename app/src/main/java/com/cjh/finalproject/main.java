@@ -39,7 +39,7 @@ public class main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_main2, container, false);
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_rec = v.findViewById(R.id.btn_rec);
@@ -63,7 +63,7 @@ public class main extends Fragment {
                     check = "on";
 
                 } else {
-                    bg.setTint(Color.parseColor("#FFFFFF"));
+                    bg.setTint(Color.parseColor("#E6191919"));
                     tv_led.setText("OFF");
                     tv_led.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
@@ -81,7 +81,7 @@ public class main extends Fragment {
                     tv_rec.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
-                    bg2.setTint(Color.parseColor("#FFFFFF"));
+                    bg2.setTint(Color.parseColor("#E6191919"));
                     tv_rec.setText("OFF");
                     tv_rec.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
