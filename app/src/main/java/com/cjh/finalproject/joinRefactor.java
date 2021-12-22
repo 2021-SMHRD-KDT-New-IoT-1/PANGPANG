@@ -16,7 +16,7 @@ public class joinRefactor extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View v = inflater.inflate(R.layout.joinrefactor, container, false);
+        View v = inflater.inflate(R.layout.fragment_refactor, container, false);
 
 
         return v;
