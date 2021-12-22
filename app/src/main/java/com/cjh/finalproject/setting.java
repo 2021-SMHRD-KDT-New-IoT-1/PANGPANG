@@ -37,6 +37,7 @@ public class setting extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),LoginActivity2.class);
                 setting.this.startActivity(intent);
+                getActivity().finish();
             }
         });
 

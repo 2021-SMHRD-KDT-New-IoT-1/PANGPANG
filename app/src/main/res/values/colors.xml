@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="main_color">#EBEBEB</color>
+    <color name="main_back">#80FFFFFF</color>
     <color name="button_text">#E6191919</color>
 </resources>
 
