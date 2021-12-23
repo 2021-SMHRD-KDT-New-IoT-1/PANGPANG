@@ -1,12 +1,22 @@
 package com.cjh.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -20,6 +30,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class main extends Fragment {
@@ -35,6 +59,17 @@ public class main extends Fragment {
     private ImageView img_led;
     private ImageView img_rec;
 
+    private TextView tv_gps;
+    private TextView tv_temp;
+
+    private ImageView img_weather;
+
+    private Geocoder geocoder;
+    private RequestQueue requestQueue;
+
+    double lon;
+    double lat;
+
     String check = "off";
     ProgressBar pb;
     int max = 120;
@@ -47,7 +82,7 @@ public class main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main2, container, false);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_rec = v.findViewById(R.id.btn_rec);
@@ -60,6 +95,130 @@ public class main extends Fragment {
         img_led = v.findViewById(R.id.img_led);
         img_rec = v.findViewById(R.id.img_rec);
 
+        tv_gps = v.findViewById(R.id.tv_gps);
+        tv_temp = v.findViewById(R.id.tv_temp);
+
+        img_weather = v.findViewById(R.id.img_weather);
+
+        geocoder = new Geocoder(getContext());
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getContext());
+        }
+
+
+        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        } else {
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            String provider = location.getProvider();
+            lon = location.getLongitude();
+            lat = location.getLatitude();
+            // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
+
+            try {
+                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
+                if (citylist != null) {
+                    if (citylist.size() == 0) {
+                        Log.e("reverseGeocoding", "해당 도시 없음");
+                    } else {
+                        String subLocality = citylist.get(0).getSubLocality();
+                        String thoroughfare = citylist.get(0).getThoroughfare();
+                        tv_gps.setText(subLocality + " " + thoroughfare);
+                    }
+                }
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+//                    tv_gps.setText("위치정보 : " + provider + "\n" +
+//                            "위도 : " + longitude + "\n" +
+//                            "경도 : " + latitude + "\n" +
+//                            "고도 : " + altitude);
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+
+            String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
+
+            StringRequest request = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("테스트", "119 + " + response);
+
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+
+                                JSONObject main = jsonObject.getJSONObject("main");
+                                JSONArray weather = jsonObject.getJSONArray("weather");
+
+                                Log.d("테스트", "127 + " + String.valueOf(main));
+
+                                Log.d("테스트", "129 + " + String.valueOf(main));
+
+                                String s_temp = (main.getString("temp"));
+                                String s_temp_min = main.getString("temp_min");
+                                String s_temp_max = main.getString("temp_max");
+
+                                String temp = s_temp.substring(0, s_temp.length()-3);
+                                String temp_min = s_temp_min.substring(0, s_temp_min.length()-3);
+                                String temp_max = s_temp_max.substring(0, s_temp_max.length()-3);
+
+                                Log.d("테스트", "134 + " + temp);
+
+                                Log.d("테스트", "136 + " + String.valueOf(lat));
+                                Log.d("테스트", "137 + " + String.valueOf(lon));
+
+                                String imgSource = weather.getJSONObject(0).getString("icon");
+
+                                tv_temp.setText(temp + "°C");
+
+                                if (imgSource.equals("01d")) {
+                                    img_weather.setImageResource(R.drawable.wea_sunny);
+                                } else if (imgSource.equals("02d")){
+                                    img_weather.setImageResource(R.drawable.wea_few_clouds);
+                                } else if (imgSource.equals("03d")){
+                                    img_weather.setImageResource(R.drawable.wea_clouds);
+                                } else if (imgSource.equals("04d")){
+                                    img_weather.setImageResource(R.drawable.wea_broken_clouds);
+                                } else if (imgSource.equals("09d")){
+                                    img_weather.setImageResource(R.drawable.wea_shower_rain);
+                                } else if (imgSource.equals("10d")){
+                                    img_weather.setImageResource(R.drawable.wea_rain);
+                                } else if (imgSource.equals("11d")){
+                                    img_weather.setImageResource(R.drawable.wea_thunder);
+                                } else if (imgSource.equals("13d")){
+                                    img_weather.setImageResource(R.drawable.wea_snowflake);
+                                } else if (imgSource.equals("50d")){
+                                    img_weather.setImageResource(R.drawable.wea_mist);
+                                }
+//                                imgUrl = "http://openweathermap.org/img/wn/"+ imgSource + "@2x.png";
+//
+//                                Glide.with(getContext()).load(imgUrl).into(img_weather);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+
+            requestQueue.add(request);
+        }
+
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
         pb.setProgress(70);
 
@@ -71,14 +230,14 @@ public class main extends Fragment {
                 Drawable bg = btn_led.getBackground();
                 if (check.equals("off")) {
                     bg.setTint(Color.parseColor("#FBC02D"));
-                    img_led.setImageResource(R.drawable.background_choice);
+                    img_led.setImageResource(R.drawable.background_cylinder3);
                     tv_led.setText("ON");
                     tv_led.setTextColor(Color.parseColor("#FBC02D"));
                     check = "on";
 
                 } else {
                     bg.setTint(Color.parseColor("#FFFFFF"));
-                    img_led.setImageResource(R.drawable.background_main);
+                    img_led.setImageResource(R.drawable.background_cylinder2);
                     tv_led.setText("OFF");
                     tv_led.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
@@ -92,13 +251,13 @@ public class main extends Fragment {
                 Drawable bg2 = btn_rec.getBackground();
                 if (check == "off") {
                     bg2.setTint(Color.parseColor("#D50000"));
-                    img_rec.setImageResource(R.drawable.background_choice2);
+                    img_rec.setImageResource(R.drawable.background_cylinder3);
                     tv_rec.setText("ON");
                     tv_rec.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
                     bg2.setTint(Color.parseColor("#FFFFFF"));
-                    img_rec.setImageResource(R.drawable.background_main);
+                    img_rec.setImageResource(R.drawable.background_cylinder2);
                     tv_rec.setText("OFF");
                     tv_rec.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
@@ -149,4 +308,37 @@ public class main extends Fragment {
             }
         }
     }
+
+    final LocationListener gpsLocationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            String provider = location.getProvider();
+            lon = location.getLongitude();
+            lat = location.getLatitude();
+            double altitude = location.getAltitude();
+            try {
+
+                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
+                if (citylist != null) {
+                    if (citylist.size() == 0) {
+                        Log.e("reverseGeocoding", "해당 도시 없음");
+                    } else {
+                        String subLocality = citylist.get(0).getSubLocality();
+                        String thoroughfare = citylist.get(0).getThoroughfare();
+                        tv_gps.setText(subLocality + " " + thoroughfare);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+
+        public void onProviderEnabled(String provider) {
+        }
+
+        public void onProviderDisabled(String provider) {
+        }
+    };
 }
