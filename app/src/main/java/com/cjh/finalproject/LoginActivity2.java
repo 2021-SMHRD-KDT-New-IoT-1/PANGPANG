@@ -42,31 +42,22 @@ public class LoginActivity2 extends AppCompatActivity {
         button_join1 = findViewById(R.id.button_join1);
         button_login1 = findViewById(R.id.button_login1);
 
+        //회원가입 버튼을 클릭하면~
         button_join1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //회원가입 페이지로 넘어가 버렷~
                 Intent intent = new Intent(LoginActivity2.this, activity_join2.class);
                 startActivity(intent);
             }
         });
 
 
-        button_login1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(login_id1.equals("abc")&&login_pw2.equals("1234")){
-                    Toast.makeText(LoginActivity2.this,"로그인 성공!",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
-                    intent.putExtra("name", login_id1.getText().toString());
-                    startActivity(intent);
-                    finish();
-                }else{
-                    Toast.makeText(LoginActivity2.this,"ID와 PW를 다시 확인해!",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
+        //보내는애
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //로그린 서블렛 URL 주소
         String url_login = "http://172.30.1.28:8082/MemberServer2/LoginServlet";
 
         findViewById(R.id.button_login1).setOnClickListener(new View.OnClickListener() {
@@ -78,13 +69,16 @@ public class LoginActivity2 extends AppCompatActivity {
         });
 
 
+        //
         stringRequest_login = new StringRequest(Request.Method.POST, url_login, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.equals("true")) {
+
+                if (!response.equals("null")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
+                    Intent intent = new Intent(LoginActivity2.this,MainActivity.class).putExtra("nick", response);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "ID를 확인해!!", Toast.LENGTH_SHORT).show();
                 }
