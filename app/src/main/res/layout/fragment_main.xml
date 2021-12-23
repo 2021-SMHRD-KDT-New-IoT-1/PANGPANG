@@ -34,33 +34,33 @@
 
     <ImageButton
         android:id="@+id/btn_led"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
 
         android:background="@drawable/led"
         android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75" />
 
     <ImageButton
         android:id="@+id/btn_rec"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
 
         android:background="@drawable/rec"
         android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/btn_led"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_led"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tv_led"
