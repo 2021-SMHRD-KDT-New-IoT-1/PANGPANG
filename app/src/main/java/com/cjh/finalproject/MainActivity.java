@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.layout);
         tv_user = findViewById(R.id.tv_user);
 
+        // 서버에서 닉네임 받아오는 부분
         tv_user.setText(getIntent().getStringExtra("nick") + "님 환영합니다!");
 
                 // 처음부터 1번 화면으로 나오게 만드는 방법
