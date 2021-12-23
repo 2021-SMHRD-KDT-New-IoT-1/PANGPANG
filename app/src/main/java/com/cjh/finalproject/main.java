@@ -47,7 +47,7 @@ public class main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main2, container, false);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_rec = v.findViewById(R.id.btn_rec);
@@ -71,14 +71,14 @@ public class main extends Fragment {
                 Drawable bg = btn_led.getBackground();
                 if (check.equals("off")) {
                     bg.setTint(Color.parseColor("#FBC02D"));
-                    img_led.setImageResource(R.drawable.background_choice);
+                    img_led.setImageResource(R.drawable.background_cylinder3);
                     tv_led.setText("ON");
                     tv_led.setTextColor(Color.parseColor("#FBC02D"));
                     check = "on";
 
                 } else {
                     bg.setTint(Color.parseColor("#FFFFFF"));
-                    img_led.setImageResource(R.drawable.background_main);
+                    img_led.setImageResource(R.drawable.background_cylinder2);
                     tv_led.setText("OFF");
                     tv_led.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
@@ -92,13 +92,13 @@ public class main extends Fragment {
                 Drawable bg2 = btn_rec.getBackground();
                 if (check == "off") {
                     bg2.setTint(Color.parseColor("#D50000"));
-                    img_rec.setImageResource(R.drawable.background_choice2);
+                    img_rec.setImageResource(R.drawable.background_cylinder3);
                     tv_rec.setText("ON");
                     tv_rec.setTextColor(Color.parseColor("#D50000"));
                     check = "on";
                 } else {
                     bg2.setTint(Color.parseColor("#FFFFFF"));
-                    img_rec.setImageResource(R.drawable.background_main);
+                    img_rec.setImageResource(R.drawable.background_cylinder2);
                     tv_rec.setText("OFF");
                     tv_rec.setTextColor(Color.parseColor("#FFFFFF"));
                     check = "off";
