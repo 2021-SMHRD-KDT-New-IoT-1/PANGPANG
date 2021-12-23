@@ -107,43 +107,43 @@ public class main extends Fragment {
         }
 
 
-        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{
-                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-        } else {
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            String provider = location.getProvider();
-            lon = location.getLongitude();
-            lat = location.getLatitude();
-            // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
-
-            try {
-                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
-                if (citylist != null) {
-                    if (citylist.size() == 0) {
-                        Log.e("reverseGeocoding", "해당 도시 없음");
-                    } else {
-                        String subLocality = citylist.get(0).getSubLocality();
-                        String thoroughfare = citylist.get(0).getThoroughfare();
-                        tv_gps.setText(subLocality + " " + thoroughfare);
-                    }
-                }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//
+//        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
+//                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(getActivity(), new String[]{
+//                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+//        } else {
+//            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            String provider = location.getProvider();
+//            lon = location.getLongitude();
+//            lat = location.getLatitude();
+//            // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
+//
+//            try {
+//                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
+//                if (citylist != null) {
+//                    if (citylist.size() == 0) {
+//                        Log.e("reverseGeocoding", "해당 도시 없음");
+//                    } else {
+//                        String subLocality = citylist.get(0).getSubLocality();
+//                        String thoroughfare = citylist.get(0).getThoroughfare();
+//                        tv_gps.setText(subLocality + " " + thoroughfare);
+//                    }
+//                }
+//
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
 
 //                    tv_gps.setText("위치정보 : " + provider + "\n" +
 //                            "위도 : " + longitude + "\n" +
 //                            "경도 : " + latitude + "\n" +
 //                            "고도 : " + altitude);
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+//            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
+//            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
 
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
 
@@ -217,7 +217,7 @@ public class main extends Fragment {
                     });
 
             requestQueue.add(request);
-        }
+//        }
 
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
         pb.setProgress(70);
@@ -295,17 +295,32 @@ public class main extends Fragment {
 
         @Override
         public void run() {
-            for (int i = 0; i < max; i++) {
-                Message msg = new Message();
-                msg.arg1 = i;
+
+            while(true){
 
                 try {
-                    Thread.sleep(speed);
-                    handler.sendMessage(msg);
+                    responsePpm();
+
+                    for (int i = 0; i < max; i++) {
+                        Message msg = new Message();
+                        msg.arg1 = i;
+
+                        try {
+                            Thread.sleep(speed);
+                            handler.sendMessage(msg);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    //30초 지난 후
+                    Thread.sleep(1000*30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
+
+
         }
     }
 
@@ -341,4 +356,29 @@ public class main extends Fragment {
         public void onProviderDisabled(String provider) {
         }
     };
+
+    public void responsePpm(){
+        String server_url = "http://172.30.1.45:8081/MemberServer2/GasServlet";
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("main", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.v("main", error.toString());
+                    }
+                }
+        );
+
+        requestQueue.add(request);
+
+    }
+
 }
