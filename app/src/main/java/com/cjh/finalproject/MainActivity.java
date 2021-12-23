@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -15,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bnview;
     private FrameLayout layout;
     private TextView tv_user;
+
+    RequestQueue requestQueue; // 전송하는 통로
+    StringRequest stringRequest_gas; // 전송할 데이터, 설정(get/post)등 담는 바구니!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

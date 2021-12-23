@@ -42,9 +42,11 @@ public class LoginActivity2 extends AppCompatActivity {
         button_join1 = findViewById(R.id.button_join1);
         button_login1 = findViewById(R.id.button_login1);
 
+        //회원가입 버튼을 클릭하면~
         button_join1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //회원가입 페이지로 넘어가 버렷~
                 Intent intent = new Intent(LoginActivity2.this, activity_join2.class);
                 startActivity(intent);
             }
@@ -52,7 +54,10 @@ public class LoginActivity2 extends AppCompatActivity {
 
 
 
+        //보내는애
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //로그린 서블렛 URL 주소
         String url_login = "http://172.30.1.28:8082/MemberServer2/LoginServlet";
 
         findViewById(R.id.button_login1).setOnClickListener(new View.OnClickListener() {
@@ -64,6 +69,7 @@ public class LoginActivity2 extends AppCompatActivity {
         });
 
 
+        //
         stringRequest_login = new StringRequest(Request.Method.POST, url_login, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
