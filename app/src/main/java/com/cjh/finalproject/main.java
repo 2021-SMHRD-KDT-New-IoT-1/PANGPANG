@@ -106,7 +106,7 @@ public class main extends Fragment {
             requestQueue = Volley.newRequestQueue(getContext());
         }
 
-
+        // GPS 기능 ---------------------------------------------------------------------------------
         final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
@@ -137,14 +137,10 @@ public class main extends Fragment {
                 e.printStackTrace();
             }
 
-
-//                    tv_gps.setText("위치정보 : " + provider + "\n" +
-//                            "위도 : " + longitude + "\n" +
-//                            "경도 : " + latitude + "\n" +
-//                            "고도 : " + altitude);
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
 
+            // 날씨 기능 ----------------------------------------------------------------------------
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
 
             StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -167,9 +163,9 @@ public class main extends Fragment {
                                 String s_temp_min = main.getString("temp_min");
                                 String s_temp_max = main.getString("temp_max");
 
-                                String temp = s_temp.substring(0, s_temp.length()-3);
-                                String temp_min = s_temp_min.substring(0, s_temp_min.length()-3);
-                                String temp_max = s_temp_max.substring(0, s_temp_max.length()-3);
+                                String temp = s_temp.substring(0, s_temp.length() - 3);
+                                String temp_min = s_temp_min.substring(0, s_temp_min.length() - 3);
+                                String temp_max = s_temp_max.substring(0, s_temp_max.length() - 3);
 
                                 Log.d("테스트", "134 + " + temp);
 
@@ -182,21 +178,21 @@ public class main extends Fragment {
 
                                 if (imgSource.equals("01d")) {
                                     img_weather.setImageResource(R.drawable.wea_sunny);
-                                } else if (imgSource.equals("02d")){
+                                } else if (imgSource.equals("02d")) {
                                     img_weather.setImageResource(R.drawable.wea_few_clouds);
-                                } else if (imgSource.equals("03d")){
+                                } else if (imgSource.equals("03d")) {
                                     img_weather.setImageResource(R.drawable.wea_clouds);
-                                } else if (imgSource.equals("04d")){
+                                } else if (imgSource.equals("04d")) {
                                     img_weather.setImageResource(R.drawable.wea_broken_clouds);
-                                } else if (imgSource.equals("09d")){
+                                } else if (imgSource.equals("09d")) {
                                     img_weather.setImageResource(R.drawable.wea_shower_rain);
-                                } else if (imgSource.equals("10d")){
+                                } else if (imgSource.equals("10d")) {
                                     img_weather.setImageResource(R.drawable.wea_rain);
-                                } else if (imgSource.equals("11d")){
+                                } else if (imgSource.equals("11d")) {
                                     img_weather.setImageResource(R.drawable.wea_thunder);
-                                } else if (imgSource.equals("13d")){
+                                } else if (imgSource.equals("13d")) {
                                     img_weather.setImageResource(R.drawable.wea_snowflake);
-                                } else if (imgSource.equals("50d")){
+                                } else if (imgSource.equals("50d")) {
                                     img_weather.setImageResource(R.drawable.wea_mist);
                                 }
 //                                imgUrl = "http://openweathermap.org/img/wn/"+ imgSource + "@2x.png";
@@ -219,11 +215,13 @@ public class main extends Fragment {
             requestQueue.add(request);
         }
 
+        // Prograss바 작동 --------------------------------------------------------------------------
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
         pb.setProgress(70);
 
         new PrograssThread(max).start();
 
+        // LED기능 버튼 -----------------------------------------------------------------------------
         btn_led.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +243,7 @@ public class main extends Fragment {
             }
         });
 
+        // 녹화기능 버튼 -----------------------------------------------------------------------------
         btn_rec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,6 +267,7 @@ public class main extends Fragment {
         return v;
     }
 
+    // PrograssThread 전용 Handler ------------------------------------------------------------------
     Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -286,6 +286,7 @@ public class main extends Fragment {
         }
     };
 
+    // Prograss바 전용 Thread -----------------------------------------------------------------------
     class PrograssThread extends Thread {
         private int max;
 
@@ -295,20 +296,36 @@ public class main extends Fragment {
 
         @Override
         public void run() {
-            for (int i = 0; i < max; i++) {
-                Message msg = new Message();
-                msg.arg1 = i;
+
+            while (true) {
 
                 try {
-                    Thread.sleep(speed);
-                    handler.sendMessage(msg);
+                    responsePpm();
+
+                    for (int i = 0; i < max; i++) {
+                        Message msg = new Message();
+                        msg.arg1 = i;
+
+                        try {
+                            Thread.sleep(speed);
+                            handler.sendMessage(msg);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    //30초 지난 후
+                    Thread.sleep(1000 * 30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
+
+
         }
     }
 
+    // GPS 하부 기능 --------------------------------------------------------------------------------
     final LocationListener gpsLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             String provider = location.getProvider();
@@ -341,4 +358,29 @@ public class main extends Fragment {
         public void onProviderDisabled(String provider) {
         }
     };
+
+    public void responsePpm() {
+        String server_url = "http://172.30.1.45:8081/MemberServer2/GasServlet";
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("main", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.v("main", error.toString());
+                    }
+                }
+        );
+
+        requestQueue.add(request);
+
+    }
+
 }
