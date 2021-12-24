@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_medium"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tv_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -173,18 +173,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_onoff"
         android:layout_width="41dp"
         android:layout_height="29dp"
         android:background="@drawable/roundsquare3"
         android:fontFamily="@font/g_medium"
         android:text="해제"
         android:textColor="	#00BFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_phone"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/tv_phone"
+        app:layout_constraintTop_toTopOf="@+id/tv_phone" />
 
     <Button
         android:id="@+id/button2"
@@ -205,7 +205,7 @@
         android:background="@drawable/phone"
         android:backgroundTint="#C8C8C8"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/tv_phone"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
