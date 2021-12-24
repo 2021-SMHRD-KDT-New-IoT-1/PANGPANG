@@ -163,9 +163,9 @@ public class main extends Fragment {
                                 String s_temp_min = main.getString("temp_min");
                                 String s_temp_max = main.getString("temp_max");
 
-                                String temp = s_temp.substring(0, s_temp.length()-3);
-                                String temp_min = s_temp_min.substring(0, s_temp_min.length()-3);
-                                String temp_max = s_temp_max.substring(0, s_temp_max.length()-3);
+                                String temp = s_temp.substring(0, s_temp.length() - 3);
+                                String temp_min = s_temp_min.substring(0, s_temp_min.length() - 3);
+                                String temp_max = s_temp_max.substring(0, s_temp_max.length() - 3);
 
                                 Log.d("테스트", "134 + " + temp);
 
@@ -178,21 +178,21 @@ public class main extends Fragment {
 
                                 if (imgSource.equals("01d")) {
                                     img_weather.setImageResource(R.drawable.wea_sunny);
-                                } else if (imgSource.equals("02d")){
+                                } else if (imgSource.equals("02d")) {
                                     img_weather.setImageResource(R.drawable.wea_few_clouds);
-                                } else if (imgSource.equals("03d")){
+                                } else if (imgSource.equals("03d")) {
                                     img_weather.setImageResource(R.drawable.wea_clouds);
-                                } else if (imgSource.equals("04d")){
+                                } else if (imgSource.equals("04d")) {
                                     img_weather.setImageResource(R.drawable.wea_broken_clouds);
-                                } else if (imgSource.equals("09d")){
+                                } else if (imgSource.equals("09d")) {
                                     img_weather.setImageResource(R.drawable.wea_shower_rain);
-                                } else if (imgSource.equals("10d")){
+                                } else if (imgSource.equals("10d")) {
                                     img_weather.setImageResource(R.drawable.wea_rain);
-                                } else if (imgSource.equals("11d")){
+                                } else if (imgSource.equals("11d")) {
                                     img_weather.setImageResource(R.drawable.wea_thunder);
-                                } else if (imgSource.equals("13d")){
+                                } else if (imgSource.equals("13d")) {
                                     img_weather.setImageResource(R.drawable.wea_snowflake);
-                                } else if (imgSource.equals("50d")){
+                                } else if (imgSource.equals("50d")) {
                                     img_weather.setImageResource(R.drawable.wea_mist);
                                 }
 //                                imgUrl = "http://openweathermap.org/img/wn/"+ imgSource + "@2x.png";
@@ -297,7 +297,7 @@ public class main extends Fragment {
         @Override
         public void run() {
 
-            while(true){
+            while (true) {
 
                 try {
                     responsePpm();
@@ -314,7 +314,7 @@ public class main extends Fragment {
                         }
                     }
                     //30초 지난 후
-                    Thread.sleep(1000*30);
+                    Thread.sleep(1000 * 30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -359,7 +359,7 @@ public class main extends Fragment {
         }
     };
 
-    public void responsePpm(){
+    public void responsePpm() {
         String server_url = "http://172.30.1.45:8081/MemberServer2/GasServlet";
 
         StringRequest request = new StringRequest(
