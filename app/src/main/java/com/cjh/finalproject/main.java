@@ -106,114 +106,114 @@ public class main extends Fragment {
             requestQueue = Volley.newRequestQueue(getContext());
         }
 
-        // GPS 기능 ---------------------------------------------------------------------------------
-        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{
-                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-        } else {
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            String provider = location.getProvider();
-            lon = location.getLongitude();
-            lat = location.getLatitude();
-            // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
-
-            try {
-                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
-                if (citylist != null) {
-                    if (citylist.size() == 0) {
-                        Log.e("reverseGeocoding", "해당 도시 없음");
-                    } else {
-                        String subLocality = citylist.get(0).getSubLocality();
-                        String thoroughfare = citylist.get(0).getThoroughfare();
-                        tv_gps.setText(subLocality + " " + thoroughfare);
-                    }
-                }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
-
-            // 날씨 기능 ----------------------------------------------------------------------------
-            String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
-
-            StringRequest request = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("테스트", "119 + " + response);
-
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-
-                                JSONObject main = jsonObject.getJSONObject("main");
-                                JSONArray weather = jsonObject.getJSONArray("weather");
-
-                                Log.d("테스트", "127 + " + String.valueOf(main));
-
-                                Log.d("테스트", "129 + " + String.valueOf(main));
-
-                                String s_temp = (main.getString("temp"));
-                                String s_temp_min = main.getString("temp_min");
-                                String s_temp_max = main.getString("temp_max");
-
-                                String temp = s_temp.substring(0, s_temp.length() - 3);
-                                String temp_min = s_temp_min.substring(0, s_temp_min.length() - 3);
-                                String temp_max = s_temp_max.substring(0, s_temp_max.length() - 3);
-
-                                Log.d("테스트", "134 + " + temp);
-
-                                Log.d("테스트", "136 + " + String.valueOf(lat));
-                                Log.d("테스트", "137 + " + String.valueOf(lon));
-
-                                String imgSource = weather.getJSONObject(0).getString("icon");
-
-                                tv_temp.setText(temp + "°C");
-
-                                if (imgSource.equals("01d")) {
-                                    img_weather.setImageResource(R.drawable.wea_sunny);
-                                } else if (imgSource.equals("02d")) {
-                                    img_weather.setImageResource(R.drawable.wea_few_clouds);
-                                } else if (imgSource.equals("03d")) {
-                                    img_weather.setImageResource(R.drawable.wea_clouds);
-                                } else if (imgSource.equals("04d")) {
-                                    img_weather.setImageResource(R.drawable.wea_broken_clouds);
-                                } else if (imgSource.equals("09d")) {
-                                    img_weather.setImageResource(R.drawable.wea_shower_rain);
-                                } else if (imgSource.equals("10d")) {
-                                    img_weather.setImageResource(R.drawable.wea_rain);
-                                } else if (imgSource.equals("11d")) {
-                                    img_weather.setImageResource(R.drawable.wea_thunder);
-                                } else if (imgSource.equals("13d")) {
-                                    img_weather.setImageResource(R.drawable.wea_snowflake);
-                                } else if (imgSource.equals("50d")) {
-                                    img_weather.setImageResource(R.drawable.wea_mist);
-                                }
-//                                imgUrl = "http://openweathermap.org/img/wn/"+ imgSource + "@2x.png";
+//        // GPS 기능 ---------------------------------------------------------------------------------
+//        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 //
-//                                Glide.with(getContext()).load(imgUrl).into(img_weather);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    });
-
-            requestQueue.add(request);
-        }
+//        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
+//                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(getActivity(), new String[]{
+//                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+//        } else {
+//            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            String provider = location.getProvider();
+//            lon = location.getLongitude();
+//            lat = location.getLatitude();
+//            // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
+//
+//            try {
+//                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
+//                if (citylist != null) {
+//                    if (citylist.size() == 0) {
+//                        Log.e("reverseGeocoding", "해당 도시 없음");
+//                    } else {
+//                        String subLocality = citylist.get(0).getSubLocality();
+//                        String thoroughfare = citylist.get(0).getThoroughfare();
+//                        tv_gps.setText(subLocality + " " + thoroughfare);
+//                    }
+//                }
+//
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
+//            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+//
+//            // 날씨 기능 ----------------------------------------------------------------------------
+//            String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
+//
+//            StringRequest request = new StringRequest(Request.Method.GET, url,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String response) {
+//                            Log.d("테스트", "119 + " + response);
+//
+//                            try {
+//                                JSONObject jsonObject = new JSONObject(response);
+//
+//                                JSONObject main = jsonObject.getJSONObject("main");
+//                                JSONArray weather = jsonObject.getJSONArray("weather");
+//
+//                                Log.d("테스트", "127 + " + String.valueOf(main));
+//
+//                                Log.d("테스트", "129 + " + String.valueOf(main));
+//
+//                                String s_temp = (main.getString("temp"));
+//                                String s_temp_min = main.getString("temp_min");
+//                                String s_temp_max = main.getString("temp_max");
+//
+//                                String temp = s_temp.substring(0, s_temp.length() - 3);
+//                                String temp_min = s_temp_min.substring(0, s_temp_min.length() - 3);
+//                                String temp_max = s_temp_max.substring(0, s_temp_max.length() - 3);
+//
+//                                Log.d("테스트", "134 + " + temp);
+//
+//                                Log.d("테스트", "136 + " + String.valueOf(lat));
+//                                Log.d("테스트", "137 + " + String.valueOf(lon));
+//
+//                                String imgSource = weather.getJSONObject(0).getString("icon");
+//
+//                                tv_temp.setText(temp + "°C");
+//
+//                                if (imgSource.equals("01d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_sunny);
+//                                } else if (imgSource.equals("02d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_few_clouds);
+//                                } else if (imgSource.equals("03d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_clouds);
+//                                } else if (imgSource.equals("04d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_broken_clouds);
+//                                } else if (imgSource.equals("09d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_shower_rain);
+//                                } else if (imgSource.equals("10d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_rain);
+//                                } else if (imgSource.equals("11d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_thunder);
+//                                } else if (imgSource.equals("13d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_snowflake);
+//                                } else if (imgSource.equals("50d")) {
+//                                    img_weather.setImageResource(R.drawable.wea_mist);
+//                                }
+////                                imgUrl = "http://openweathermap.org/img/wn/"+ imgSource + "@2x.png";
+////
+////                                Glide.with(getContext()).load(imgUrl).into(img_weather);
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//                    },
+//                    new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//
+//                        }
+//                    });
+//
+//            requestQueue.add(request);
+//        }
 
         // Prograss바 작동 --------------------------------------------------------------------------
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
@@ -325,39 +325,39 @@ public class main extends Fragment {
         }
     }
 
-    // GPS 하부 기능 --------------------------------------------------------------------------------
-    final LocationListener gpsLocationListener = new LocationListener() {
-        public void onLocationChanged(Location location) {
-            String provider = location.getProvider();
-            lon = location.getLongitude();
-            lat = location.getLatitude();
-            double altitude = location.getAltitude();
-            try {
-
-                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
-                if (citylist != null) {
-                    if (citylist.size() == 0) {
-                        Log.e("reverseGeocoding", "해당 도시 없음");
-                    } else {
-                        String subLocality = citylist.get(0).getSubLocality();
-                        String thoroughfare = citylist.get(0).getThoroughfare();
-                        tv_gps.setText(subLocality + " " + thoroughfare);
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
-
-        public void onProviderEnabled(String provider) {
-        }
-
-        public void onProviderDisabled(String provider) {
-        }
-    };
+//    // GPS 하부 기능 --------------------------------------------------------------------------------
+//    final LocationListener gpsLocationListener = new LocationListener() {
+//        public void onLocationChanged(Location location) {
+//            String provider = location.getProvider();
+//            lon = location.getLongitude();
+//            lat = location.getLatitude();
+//            double altitude = location.getAltitude();
+//            try {
+//
+//                List<Address> citylist = geocoder.getFromLocation(lat, lon, 10);
+//                if (citylist != null) {
+//                    if (citylist.size() == 0) {
+//                        Log.e("reverseGeocoding", "해당 도시 없음");
+//                    } else {
+//                        String subLocality = citylist.get(0).getSubLocality();
+//                        String thoroughfare = citylist.get(0).getThoroughfare();
+//                        tv_gps.setText(subLocality + " " + thoroughfare);
+//                    }
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        public void onStatusChanged(String provider, int status, Bundle extras) {
+//        }
+//
+//        public void onProviderEnabled(String provider) {
+//        }
+//
+//        public void onProviderDisabled(String provider) {
+//        }
+//    };
 
     public void responsePpm() {
         String server_url = "http://172.30.1.45:8081/MemberServer2/GasServlet";
