@@ -296,17 +296,32 @@ public class main extends Fragment {
 
         @Override
         public void run() {
-            for (int i = 0; i < max; i++) {
-                Message msg = new Message();
-                msg.arg1 = i;
+
+            while(true){
 
                 try {
-                    Thread.sleep(speed);
-                    handler.sendMessage(msg);
+                    responsePpm();
+
+                    for (int i = 0; i < max; i++) {
+                        Message msg = new Message();
+                        msg.arg1 = i;
+
+                        try {
+                            Thread.sleep(speed);
+                            handler.sendMessage(msg);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    //30초 지난 후
+                    Thread.sleep(1000*30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
+
+
         }
     }
 
@@ -343,4 +358,29 @@ public class main extends Fragment {
         public void onProviderDisabled(String provider) {
         }
     };
+
+    public void responsePpm(){
+        String server_url = "http://172.30.1.45:8081/MemberServer2/GasServlet";
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("main", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.v("main", error.toString());
+                    }
+                }
+        );
+
+        requestQueue.add(request);
+
+    }
+
 }
