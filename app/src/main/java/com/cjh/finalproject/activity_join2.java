@@ -25,6 +25,7 @@ import java.util.Map;
 public class activity_join2 extends AppCompatActivity {
     EditText join_id1;
     EditText join_pw1;
+    EditText join_pw2;
     EditText join_nickname1;
 
 
@@ -39,7 +40,14 @@ public class activity_join2 extends AppCompatActivity {
 
         join_id1 = findViewById(R.id.join_id1);
         join_pw1 = findViewById(R.id.join_pw1);
+        join_pw2 = findViewById(R.id.join_pw2);
         join_nickname1 = findViewById(R.id.join_nickname1);
+
+
+        //만약에 pw1 에 쓴 거랑 pw2가 일치하지 않으면
+        // Toast 메시지로 위에쓴거랑 틀림 ㅅㄱ링 다시쓰셈,
+        // 가입 안되야함, 넘어가면 안댐, 그거 논리적 처리 해줘야함 ㅋ
+
 
 
         // 1.통로생성~
