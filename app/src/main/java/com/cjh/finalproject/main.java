@@ -82,7 +82,7 @@ public class main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_main2, container, false);
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_rec = v.findViewById(R.id.btn_rec);
