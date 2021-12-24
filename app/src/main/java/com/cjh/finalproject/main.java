@@ -106,7 +106,7 @@ public class main extends Fragment {
             requestQueue = Volley.newRequestQueue(getContext());
         }
 
-
+        // GPS 기능 ---------------------------------------------------------------------------------
         final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(),
@@ -137,14 +137,10 @@ public class main extends Fragment {
                 e.printStackTrace();
             }
 
-
-//                    tv_gps.setText("위치정보 : " + provider + "\n" +
-//                            "위도 : " + longitude + "\n" +
-//                            "경도 : " + latitude + "\n" +
-//                            "고도 : " + altitude);
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
 
+            // 날씨 기능 ----------------------------------------------------------------------------
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
 
             StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -219,11 +215,13 @@ public class main extends Fragment {
             requestQueue.add(request);
         }
 
+        // Prograss바 작동 --------------------------------------------------------------------------
         pb = (ProgressBar) v.findViewById(R.id.progress_bar);
         pb.setProgress(70);
 
         new PrograssThread(max).start();
 
+        // LED기능 버튼 -----------------------------------------------------------------------------
         btn_led.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +243,7 @@ public class main extends Fragment {
             }
         });
 
+        // 녹화기능 버튼 -----------------------------------------------------------------------------
         btn_rec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,6 +267,7 @@ public class main extends Fragment {
         return v;
     }
 
+    // PrograssThread 전용 Handler ------------------------------------------------------------------
     Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -286,6 +286,7 @@ public class main extends Fragment {
         }
     };
 
+    // Prograss바 전용 Thread -----------------------------------------------------------------------
     class PrograssThread extends Thread {
         private int max;
 
@@ -309,6 +310,7 @@ public class main extends Fragment {
         }
     }
 
+    // GPS 하부 기능 --------------------------------------------------------------------------------
     final LocationListener gpsLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             String provider = location.getProvider();
