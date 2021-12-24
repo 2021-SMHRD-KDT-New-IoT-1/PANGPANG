@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/background_btn"
         android:fontFamily="@font/g_bold"
@@ -34,13 +34,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/set_regist" />
 
     <Button
         android:id="@+id/set_modify"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/background_btn"
         android:fontFamily="@font/g_bold"
         android:gravity="center"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="@+id/set_logout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/set_logout"
-        app:layout_constraintTop_toBottomOf="@+id/set_logout" />
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <Button
         android:id="@+id/set_regist"

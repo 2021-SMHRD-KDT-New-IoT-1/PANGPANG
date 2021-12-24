@@ -107,10 +107,9 @@
         android:textColorHint="@color/main_color"
         android:textColorLink="@color/main_color"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/join_pw1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/join_pw1"
-        app:layout_constraintTop_toBottomOf="@+id/join_pw1" />
+        app:layout_constraintEnd_toEndOf="@+id/join_pw2"
+        app:layout_constraintStart_toStartOf="@+id/join_pw2"
+        app:layout_constraintTop_toBottomOf="@+id/join_pw2" />
 
     <Button
         android:id="@+id/join_button1"
@@ -146,5 +145,27 @@
         app:layout_constraintEnd_toEndOf="@+id/join_id1"
         app:layout_constraintStart_toStartOf="@+id/join_id1"
         app:layout_constraintTop_toBottomOf="@+id/join_id1" />
+
+    <EditText
+        android:id="@+id/join_pw2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_edt"
+        android:ems="10"
+        android:fontFamily="@font/g_medium"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHighlight="@color/main_color"
+        android:textColorHint="@color/main_color"
+        android:textColorLink="@color/main_color"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/join_id1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/join_id1"
+        app:layout_constraintTop_toBottomOf="@+id/join_pw1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
