@@ -44,9 +44,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
+import org.json.JSONException;
 
 
 public class main extends Fragment {
+
+    //가스값을 받아올 변수 gas_value
+    private int gas;
 
     private ImageButton btn_led;
     private ImageButton btn_rec;
@@ -72,7 +76,7 @@ public class main extends Fragment {
 
     String check = "off";
     ProgressBar pb;
-    int max = 120;
+    int max = 100;
     int speed = 30; // 값 올릴수록 Progress 채워지는 속도 느려짐
 
     int lv1 = 40, lv2 = 80;
@@ -274,14 +278,16 @@ public class main extends Fragment {
             pb.setProgress(msg.arg1);
             if (msg.arg1 < lv1) {
                 pb.getProgressDrawable().setColorFilter(coLv1, PorterDuff.Mode.ADD);
+                tv_progress.setText("안전");
             } else if (msg.arg1 < lv2) {
+                //조건식을 일산화탄소 수치화로해서 gas_value>??
                 pb.getProgressDrawable().setColorFilter(coLv2, PorterDuff.Mode.ADD);
                 tv_progress.setText("주의");
-                tv_COdt.setText("500ppm");
+                tv_COdt.setText(gas + "ppm");
             } else {
                 pb.getProgressDrawable().setColorFilter(coLv3, PorterDuff.Mode.ADD);
                 tv_progress.setText("위험");
-                tv_COdt.setText("1000ppm");
+                tv_COdt.setText(gas + "ppm");
             }
         }
     };
@@ -314,7 +320,7 @@ public class main extends Fragment {
                         }
                     }
                     //30초 지난 후
-                    Thread.sleep(1000 * 30);
+                    Thread.sleep(1000 * 3);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -368,7 +374,16 @@ public class main extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         Log.v("main", response);
+                        try{
+                            JSONObject jObject = new JSONObject(response);
+                            gas = Integer.parseInt(jObject.getString("gas"));
+                            Log.v("gas", Integer.toString(gas));
+
+                        } catch (JSONException exp) {
+
+                        }
                     }
                 },
                 new Response.ErrorListener() {
