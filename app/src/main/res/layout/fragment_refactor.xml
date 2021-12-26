@@ -29,10 +29,9 @@
         android:text="수정"
         android:textColor="@color/button_text"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/edt_pwR"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_pwR"
-        app:layout_constraintTop_toBottomOf="@+id/edt_pwR" />
+        app:layout_constraintEnd_toEndOf="@+id/edt_pwR2"
+        app:layout_constraintStart_toStartOf="@+id/edt_pwR2"
+        app:layout_constraintTop_toBottomOf="@+id/edt_pwR2" />
 
     <EditText
         android:id="@+id/edt_idR"
@@ -74,5 +73,25 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edt_idR"
         app:layout_constraintTop_toBottomOf="@+id/edt_idR" />
+
+    <EditText
+        android:id="@+id/edt_pwR2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_edt"
+        android:ems="10"
+        android:fontFamily="@font/g_medium"
+        android:hint="비밀번호 확인"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:textColor="@color/main_color"
+        android:textColorHint="@color/main_color"
+        android:textColorLink="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_pwR"
+        app:layout_constraintStart_toStartOf="@+id/edt_pwR"
+        app:layout_constraintTop_toBottomOf="@+id/edt_pwR" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

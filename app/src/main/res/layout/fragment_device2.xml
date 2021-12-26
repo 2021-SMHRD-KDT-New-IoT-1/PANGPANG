@@ -177,9 +177,9 @@
         android:layout_width="41dp"
         android:layout_height="29dp"
         android:background="@drawable/roundsquare3"
-        android:fontFamily="@font/g_medium"
+        android:fontFamily="@font/g_bold"
         android:text="해제"
-        android:textColor="	#00BFFF"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/tv_phone"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.66"
@@ -207,5 +207,34 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintEnd_toStartOf="@+id/tv_phone"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/tv_use"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_bold"
+        android:text="사용중인 기기 1/3"
+        android:textColor="@color/main_color"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.716" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:background="@drawable/roundsquare4"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.758" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
