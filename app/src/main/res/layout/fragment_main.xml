@@ -91,11 +91,11 @@
         app:layout_constraintTop_toTopOf="@+id/img_led" />
 
     <ImageButton
-        android:id="@+id/btn_rec"
+        android:id="@+id/btn_co"
         android:layout_width="120dp"
         android:layout_height="120dp"
 
-        android:background="@drawable/rec"
+        android:background="@drawable/gas"
         android:backgroundTint="@color/main_color"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/img_rec"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_led" />
 
     <TextView
-        android:id="@+id/tv_rec"
+        android:id="@+id/tv_co"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
