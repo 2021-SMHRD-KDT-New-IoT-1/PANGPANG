@@ -78,7 +78,6 @@ public class main extends Fragment {
     private double lon;
     private double lat;
 
-
     private int max; // 프로그래스바 max 값
     private int speed = 15; // 값 올릴수록 Progress 채워지는 속도 느려짐
 
