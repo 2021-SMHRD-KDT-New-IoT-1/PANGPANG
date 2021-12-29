@@ -25,7 +25,7 @@ public class blackbox extends Fragment {
 
         webView = v.findViewById(R.id.webview);
 
-        String url = "http://172.30.1.14:8087/app_server_test/videoCont";
+        String url = "http://192.168.43.242:8087/app_server_test/videoCont";
 
         webView.setWebViewClient(new WebViewClient()); // 클라이언트 생성
         webView.getSettings().setJavaScriptEnabled(true); // JS 사용 활성화

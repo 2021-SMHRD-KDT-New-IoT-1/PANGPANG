@@ -494,7 +494,7 @@ public class main extends Fragment {
                 int loop = 0;
                 if (max < 50) {
                     loop = 33;
-                } else if (max < 100) {
+                } else if (max < 120) {
                     loop = 66;
                 } else {
                     loop = 100;
