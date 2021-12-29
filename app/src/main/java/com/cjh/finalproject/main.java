@@ -269,7 +269,7 @@ public class main extends Fragment {
             }
         });
 
-        // 일산화탄소 기능 버튼 -----------------------------------------------------------------------------
+        // 일산화탄소 기능 버튼 -----------------------------------------------------------------------
         btn_co.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -412,7 +412,7 @@ public class main extends Fragment {
         }
     }
 
-    // 일산화탄소 progress 바 초기화 쓰레드
+    // 일산화탄소 progress 바 초기화 쓰레드 ------------------------------------------------------------
     public class TimeThread extends Thread {
         // extends Thread 했기 때문에~ 지금부터 Thread!
 

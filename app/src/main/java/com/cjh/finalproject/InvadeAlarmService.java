@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,7 +23,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AlarmService extends Service {
+public class InvadeAlarmService extends Service {
     NotificationManager Notifi_M;
     ServiceThread thread;
     Notification.Builder Notifi;
@@ -50,7 +49,7 @@ public class AlarmService extends Service {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT);
             notificationChannel.setDescription("channel description");
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.GREEN);
@@ -78,7 +77,7 @@ public class AlarmService extends Service {
         public void handleMessage(android.os.Message msg) {
 
 
-            String server_url = "http://" + main.ip + "/GasServlet";
+            String server_url = "http://" + main.ip + "/SeInvadeServlet";
 
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -91,13 +90,13 @@ public class AlarmService extends Service {
 
                             try {
                                 JSONObject jObject = new JSONObject(response);
-                                max = Integer.parseInt(jObject.getString("gas"));
+                                max = Integer.parseInt(jObject.getString("invade"));
 
-                                Log.v("gas", "Alarm_max: " + max);
+                                Log.v("gas", "invade_max: " + max);
 
-                                if (max > 50) {
-                                    Intent intent = new Intent(AlarmService.this, MainActivity.class);
-                                    PendingIntent pendingIntent = PendingIntent.getActivity(AlarmService.this, 0, intent, 0);
+                                if (max == 1) {
+                                    Intent intent = new Intent(InvadeAlarmService.this, MainActivity.class);
+                                    PendingIntent pendingIntent = PendingIntent.getActivity(InvadeAlarmService.this, 0, intent, 0);
 
                                     Notification no;
 
@@ -107,10 +106,12 @@ public class AlarmService extends Service {
                                         Notifi = new Notification.Builder(getApplicationContext());
                                     }
 
-                                    no = Notifi.setContentTitle("일산화탄소 감지!!")
-                                            .setContentText("일산화탄소가 감지되었습니다!!")
+                                    no = Notifi.setContentTitle("침입자 감지!!")
+                                            .setContentText("침입자가 감지되었습니다!!")
                                             .setSmallIcon(R.drawable.start)
                                             .setTicker("!!!경고!!!")
+                                            .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                                            .setAutoCancel(true)
                                             .setVibrate(new long[]{1000, 2000, 1000, 3000, 1000, 4000, 1000, 3000, 1000, 3000})
                                             .setContentIntent(pendingIntent)
                                             .build();
