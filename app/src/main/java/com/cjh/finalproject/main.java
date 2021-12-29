@@ -77,6 +77,11 @@ public class main extends Fragment {
 
     private String check = "off";
     private ProgressBar pb;
+    private double lon;
+    private double lat;
+
+    private String check = "off";
+    private ProgressBar pb;
 
     private int max; // 프로그래스바 max 값
     private int speed = 15; // 값 올릴수록 Progress 채워지는 속도 느려짐
@@ -84,6 +89,8 @@ public class main extends Fragment {
     private int lv1 = 33, lv2 = 66;
     private int coLv1 = Color.parseColor("#00ff62"), coLv2 = Color.parseColor("#fff700"), coLv3 = Color.parseColor("#ff0400");
 
+    private int max; // 프로그래스바 max 값
+    private int speed = 15; // 값 올릴수록 Progress 채워지는 속도 느려짐
     private Drawable bg2;
     private Boolean check_spf;
     SharedPreferences spf;
