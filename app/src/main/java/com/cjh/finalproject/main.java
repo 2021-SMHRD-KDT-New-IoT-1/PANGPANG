@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -46,7 +48,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class main extends Fragment {
@@ -76,7 +80,7 @@ public class main extends Fragment {
     private RequestQueue requestQueue;
 
 
-    private String check = "off";
+    // private String check = "off";
     private ProgressBar pb;
     private double lon;
     private double lat;
@@ -87,16 +91,17 @@ public class main extends Fragment {
     private int lv1 = 33, lv2 = 66;
     private int coLv1 = Color.parseColor("#00ff62"), coLv2 = Color.parseColor("#fff700"), coLv3 = Color.parseColor("#ff0400");
 
-    private Drawable bg2;
+    private Drawable bg1;
     private Drawable bg3;
+    private Drawable bg2;
 
-    private Boolean check_spf;
+    private Boolean check_spf1;
+    private Boolean check_spf3;
     private Boolean check_spf2;
 
     private SharedPreferences spf;
 
-
-    final static String ip = "project-student-6.ddns.net/pang_Com";
+//    final static String ip = "project-student-6.ddns.net/pang_Com";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,8 +130,9 @@ public class main extends Fragment {
 
         geocoder = new Geocoder(getContext());
 
-        bg2 = btn_co.getBackground();
-        bg3 = btn_invade.getBackground();
+        bg1 = btn_led.getBackground();
+        bg3 = btn_co.getBackground();
+        bg2 = btn_invade.getBackground();
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getContext());
@@ -134,24 +140,32 @@ public class main extends Fragment {
 
         spf = getActivity().getSharedPreferences("spf", Context.MODE_PRIVATE);
 
-        check_spf = spf.getBoolean("check", false);
+        check_spf1 = spf.getBoolean("check1", false);
         check_spf2 = spf.getBoolean("check2", false);
+        check_spf3 = spf.getBoolean("check3", false);
 
-
-        if (check_spf) {
-            bg2.setTint(Color.parseColor("#8BC34A"));
-            img_rec.setImageResource(R.drawable.background_cylinder3);
-            tv_co.setText("ON");
-            tv_co.setTextColor(Color.parseColor("#8BC34A"));
-            check = "on";
+        if (check_spf1) {
+            bg1.setTint(Color.parseColor("#f0eb54"));
+            img_led.setImageResource(R.drawable.background_cylinder3);
+            tv_led.setText("ON");
+            tv_led.setTextColor(Color.parseColor("#f0eb54"));
+            // check = "on";
         }
 
         if (check_spf2) {
-            bg3.setTint(Color.parseColor("#F44336"));
+            bg2.setTint(Color.parseColor("#F44336"));
             img_invade.setImageResource(R.drawable.background_cylinder3);
             tv_invade.setText("ON");
             tv_invade.setTextColor(Color.parseColor("#F44336"));
-            check = "on";
+            // check = "on";
+        }
+
+        if (check_spf3) {
+            bg3.setTint(Color.parseColor("#8BC34A"));
+            img_rec.setImageResource(R.drawable.background_cylinder3);
+            tv_co.setText("ON");
+            tv_co.setTextColor(Color.parseColor("#8BC34A"));
+            //   check = "on";
         }
 
         // GPS 기능 ---------------------------------------------------------------------------------
@@ -192,7 +206,7 @@ public class main extends Fragment {
             // 날씨 기능 ----------------------------------------------------------------------------
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
 
-            StringRequest request = new StringRequest(Request.Method.GET, url,
+            StringRequest request = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -273,24 +287,39 @@ public class main extends Fragment {
         btn_led.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable bg = btn_led.getBackground();
-                if (check.equals("off")) {
-                    bg.setTint(Color.parseColor("#f0eb54"));
-                    img_led.setImageResource(R.drawable.background_cylinder3);
-                    tv_led.setText("ON");
-                    tv_led.setTextColor(Color.parseColor("#f0eb54"));
-                    check = "on";
-                } else {
-                    bg.setTint(Color.parseColor("#FFFFFF"));
+
+                if (check_spf1) {
+                    check_spf1 = false;
+
+                    SharedPreferences.Editor edit = spf.edit();
+                    edit.putBoolean("check1", check_spf1);
+                    edit.commit();
+
+                    Toast.makeText(getContext(), "무드등이 꺼졌습니다.", Toast.LENGTH_SHORT).show();
+
+                    bg1.setTint(Color.parseColor("#FFFFFF"));
                     img_led.setImageResource(R.drawable.background_cylinder2);
                     tv_led.setText("OFF");
                     tv_led.setTextColor(Color.parseColor("#FFFFFF"));
-                    check = "off";
+                } else if (!check_spf1) {
+                    check_spf1 = true;
+
+                    SharedPreferences.Editor edit = spf.edit();
+                    edit.putBoolean("check1", check_spf1);
+                    edit.commit();
+                    Toast.makeText(getContext(), "무드등이 켜졌습니다.", Toast.LENGTH_SHORT).show();
+
+                    bg1.setTint(Color.parseColor("#f0eb54"));
+                    img_led.setImageResource(R.drawable.background_cylinder3);
+                    tv_led.setText("ON");
+                    tv_led.setTextColor(Color.parseColor("#f0eb54"));
                 }
+
+                responseLED(check_spf1);
             }
         });
 
-        // 침임자 감지 기능 버튼 -----------------------------------------------------------------------
+        // 침입자 감지 기능 버튼 ----------------------------------------------------------------------
         btn_invade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -310,7 +339,7 @@ public class main extends Fragment {
 
                             Toast.makeText(getContext(), "침입자 감지 종료", Toast.LENGTH_SHORT).show();
 
-                            bg3.setTint(Color.parseColor("#FFFFFF"));
+                            bg2.setTint(Color.parseColor("#FFFFFF"));
                             img_invade.setImageResource(R.drawable.background_cylinder2);
                             tv_invade.setText("OFF");
                             tv_invade.setTextColor(Color.parseColor("#FFFFFF"));
@@ -335,7 +364,7 @@ public class main extends Fragment {
                             edit.commit();
                             Toast.makeText(getContext(), "침입자 감지 시작", Toast.LENGTH_SHORT).show();
 
-                            bg3.setTint(Color.parseColor("#F44336"));
+                            bg2.setTint(Color.parseColor("#F44336"));
                             img_invade.setImageResource(R.drawable.background_cylinder3);
                             tv_invade.setText("ON");
                             tv_invade.setTextColor(Color.parseColor("#F44336"));
@@ -353,23 +382,23 @@ public class main extends Fragment {
         btn_co.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (check_spf) {
+                if (check_spf3) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("일산화탄소 감시");
-                    builder.setMessage("일산화탄소 감시를 끄겠습니까?");
+                    builder.setTitle("일산화탄소 감지");
+                    builder.setMessage("일산화탄소 감지를 끄겠습니까?");
                     builder.setPositiveButton("취소", null);
                     builder.setNegativeButton("끄기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            check_spf = false;
+                            check_spf3 = false;
 
                             SharedPreferences.Editor edit = spf.edit();
-                            edit.putBoolean("check", check_spf);
+                            edit.putBoolean("check3", check_spf3);
                             edit.commit();
 
-                            Toast.makeText(getContext(), "일산화탄소 감시 종료", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "일산화탄소 감지 종료", Toast.LENGTH_SHORT).show();
 
-                            bg2.setTint(Color.parseColor("#FFFFFF"));
+                            bg3.setTint(Color.parseColor("#FFFFFF"));
                             img_rec.setImageResource(R.drawable.background_cylinder2);
                             tv_co.setText("OFF");
                             tv_co.setTextColor(Color.parseColor("#FFFFFF"));
@@ -379,22 +408,22 @@ public class main extends Fragment {
                         }
                     });
                     builder.create().show();
-                } else if (!check_spf) {
+                } else if (!check_spf3) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("일산화탄소 감시");
-                    builder.setMessage("일산화탄소 감시를 켜시겠습니까?");
+                    builder.setTitle("일산화탄소 감지");
+                    builder.setMessage("일산화탄소 감지를 켜시겠습니까?");
                     builder.setPositiveButton("취소", null);
                     builder.setNegativeButton("켜기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            check_spf = true;
+                            check_spf3 = true;
 
                             SharedPreferences.Editor edit = spf.edit();
-                            edit.putBoolean("check", check_spf);
+                            edit.putBoolean("check3", check_spf3);
                             edit.commit();
-                            Toast.makeText(getContext(), "일산화탄소 감시 시작", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "일산화탄소 감지 시작", Toast.LENGTH_SHORT).show();
 
-                            bg2.setTint(Color.parseColor("#8BC34A"));
+                            bg3.setTint(Color.parseColor("#8BC34A"));
                             img_rec.setImageResource(R.drawable.background_cylinder3);
                             tv_co.setText("ON");
                             tv_co.setTextColor(Color.parseColor("#8BC34A"));
@@ -516,6 +545,7 @@ public class main extends Fragment {
         }
     }
 
+
     // GPS 하부 기능 --------------------------------------------------------------------------------
     final LocationListener gpsLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
@@ -552,10 +582,10 @@ public class main extends Fragment {
 
     // ppm 메소드
     public void responsePpm() {
-        String server_url = "http://" + main.ip + "/GasServlet";
+        String server_url = "http://project-student-6.ddns.net/pang_Com/GasServlet";
 
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 server_url,
                 new Response.Listener<String>() {
                     @Override
@@ -589,6 +619,64 @@ public class main extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+    }
+
+    // led메소드
+    public void responseLED(boolean checked) {
+        Log.v("asdf", "responseLED");
+
+        String server_url = "http://project-student-6.ddns.net/pang_Com/InsertLightServlet";
+        //String server_url = "http://172.30.1.22:8087/pang_Com/InsertLightServlet";
+
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> data = new HashMap<>();
+                Log.v("asdf", checked + "ddd");
+                data.put("on", (checked ? "1" : "0"));
+                return data;
+            }
+        };
+
+        /*new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.v("asdf", error.toString());
+                    }
+                }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> data = new HashMap<>();
+                Log.v("asdf", checked + "ddd");
+                data.put("on", (checked ? "1" : "0"));
+                return data;
+            }
+        };*/
+
+        requestQueue.add( request);
+
+
+
+
+
 
     }
 

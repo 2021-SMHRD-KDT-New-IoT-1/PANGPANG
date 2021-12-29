@@ -77,7 +77,7 @@ public class AlarmService extends Service {
         public void handleMessage(android.os.Message msg) {
 
 
-            String server_url = "http://" + main.ip + "/GasServlet";
+            String server_url = "http://project-student-6.ddns.net/pang_Com/GasServlet";
 
             StringRequest request = new StringRequest(
                     Request.Method.GET,

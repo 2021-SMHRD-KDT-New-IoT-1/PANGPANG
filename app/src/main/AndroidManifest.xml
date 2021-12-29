@@ -36,13 +36,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- http 라이브러리 사용 -->
+        </activity>
 
+        <!-- 서비스 사용 영역 -->
         <service
             android:name=".AlarmService"
             android:enabled="true"
             android:exported="true"></service>
 
+        <service
+            android:name=".InvadeAlarmService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <!-- http 라이브러리 사용 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
