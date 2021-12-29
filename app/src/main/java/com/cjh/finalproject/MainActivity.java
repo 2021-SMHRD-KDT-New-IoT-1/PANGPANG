@@ -3,6 +3,8 @@ package com.cjh.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -18,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout layout;
     private TextView tv_user;
 
+    private String nick;
+
+    private SharedPreferences spf;
+    private String nick_spf;
+
     RequestQueue requestQueue; // 전송하는 통로
     StringRequest stringRequest_gas; // 전송할 데이터, 설정(get/post)등 담는 바구니!
 
@@ -30,8 +37,13 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.layout);
         tv_user = findViewById(R.id.tv_user);
 
+        spf = getSharedPreferences("spf", Context.MODE_PRIVATE);
+        nick_spf = spf.getString("nick","nick");
+
         // 서버에서 닉네임 받아오는 부분
-        tv_user.setText(getIntent().getStringExtra("nick") + "님 환영합니다!");
+        nick = getIntent().getStringExtra("nick");
+
+        tv_user.setText(nick_spf + "님 환영합니다!");
 
                 // 처음부터 1번 화면으로 나오게 만드는 방법
         getSupportFragmentManager().beginTransaction()

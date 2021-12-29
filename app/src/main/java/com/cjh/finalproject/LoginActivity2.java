@@ -3,7 +3,9 @@ package com.cjh.finalproject;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,10 @@ public class LoginActivity2 extends AppCompatActivity {
     private Button button_join1;
     private Button button_login1;
 
+    private String nick;
+
+    SharedPreferences spf;
+
     RequestQueue requestQueue; //전송하는 통로
     StringRequest stringRequest_login; //전송할 데이터, 설정(get/post) 등 담는 바구니!
 
@@ -41,6 +47,8 @@ public class LoginActivity2 extends AppCompatActivity {
         login_pw2 = findViewById(R.id.login_pw2);
         button_join1 = findViewById(R.id.button_join1);
         button_login1 = findViewById(R.id.button_login1);
+
+        spf = getSharedPreferences("spf", Context.MODE_PRIVATE);
 
         //회원가입 버튼을 클릭하면~
         button_join1.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +85,14 @@ public class LoginActivity2 extends AppCompatActivity {
                 if (!response.equals("null")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity2.this,MainActivity.class).putExtra("nick", response);
+
+                    nick = response;
+                    Log.v("gas_nick: ",nick);
+
+                    SharedPreferences.Editor edit = spf.edit();
+                    edit.putString("nick",nick);
+                    edit.commit();
+
                     startActivity(intent);
                     finish();
                 } else {
