@@ -91,6 +91,8 @@ public class main extends Fragment {
 
     final static String ip = "project-student-6.ddns.net/pang_Com";
 
+    // hello world!!
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
