@@ -53,7 +53,7 @@ public class activity_join2 extends AppCompatActivity {
         // 1.통로생성~
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         // 2. 전송할 URL String 변수에 저장
-        String url_join = "http://172.30.1.28:8082/MemberServer2/JoinServlet";
+        String url_join = "http://"+main.ip+"/JoinServlet";
 
         // 3. StringRequest 만들기~
         // - 매개변수 4개~, 1:전송방식, 2:url, 3:응답리스너, 4:에러리스너

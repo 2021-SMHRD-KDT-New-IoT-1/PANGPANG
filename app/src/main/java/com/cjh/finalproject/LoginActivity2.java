@@ -58,7 +58,7 @@ public class LoginActivity2 extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         //로그린 서블렛 URL 주소
-        String url_login = "http://172.30.1.28:8082/MemberServer2/LoginServlet";
+        String url_login = "http://"+main.ip+"/LoginServlet";
 
         findViewById(R.id.button_login1).setOnClickListener(new View.OnClickListener() {
             @Override
