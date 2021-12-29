@@ -27,7 +27,7 @@ public class activity_join2 extends AppCompatActivity {
     EditText join_pw1;
     EditText join_pw2;
     EditText join_nickname1;
-    EditText join_serialnumber1;
+
 
     RequestQueue requestQueue; //전송하는 통로
     StringRequest stringRequest_join; //전송할 데이터, 설정(get/post) 등 담는 바구니!
@@ -42,7 +42,7 @@ public class activity_join2 extends AppCompatActivity {
         join_pw1 = findViewById(R.id.join_pw1);
         join_pw2 = findViewById(R.id.join_pw2);
         join_nickname1 = findViewById(R.id.join_nickname1);
-        join_serialnumber1 = findViewById(R.id.join_serialnumber1);
+
 
         //만약에 pw1 에 쓴 거랑 pw2가 일치하지 않으면
         // Toast 메시지로 위에쓴거랑 틀림 ㅅㄱ링 다시쓰셈,
@@ -53,7 +53,7 @@ public class activity_join2 extends AppCompatActivity {
         // 1.통로생성~
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         // 2. 전송할 URL String 변수에 저장
-        String url_join = "http://172.30.1.28:8082/MemberServer2/JoinServlet";
+        String url_join = "http://"+main.ip+"/JoinServlet";
 
         // 3. StringRequest 만들기~
         // - 매개변수 4개~, 1:전송방식, 2:url, 3:응답리스너, 4:에러리스너
@@ -96,7 +96,6 @@ public class activity_join2 extends AppCompatActivity {
             public void onClick(View v) {
                 requestQueue.add(stringRequest_join);
             }
-
         });
 
 
