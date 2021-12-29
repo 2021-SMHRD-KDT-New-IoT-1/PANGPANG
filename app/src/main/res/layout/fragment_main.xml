@@ -30,8 +30,8 @@
 
     <ImageView
         android:id="@+id/img_rec"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:backgroundTint="@color/main_color"
         android:src="@drawable/background_cylinder2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
@@ -41,11 +41,20 @@
 
     <ImageView
         android:id="@+id/img_led"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/background_cylinder2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <ImageView
+        android:id="@+id/img_invade"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/background_cylinder2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -79,8 +88,8 @@
 
     <ImageButton
         android:id="@+id/btn_led"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
 
         android:background="@drawable/led"
         android:backgroundTint="@color/main_color"
@@ -91,9 +100,22 @@
         app:layout_constraintTop_toTopOf="@+id/img_led" />
 
     <ImageButton
+        android:id="@+id/btn_invade"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:background="@drawable/thief"
+        android:backgroundTint="@color/main_color"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/img_invade"
+        app:layout_constraintEnd_toEndOf="@+id/img_invade"
+        app:layout_constraintStart_toStartOf="@+id/img_invade"
+        app:layout_constraintTop_toTopOf="@+id/img_invade" />
+
+    <ImageButton
         android:id="@+id/btn_co"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
 
         android:background="@drawable/gas"
         android:backgroundTint="@color/main_color"
@@ -130,6 +152,19 @@
         app:layout_constraintStart_toStartOf="@+id/img_rec"
         app:layout_constraintTop_toBottomOf="@+id/img_rec" />
 
+
+    <TextView
+        android:id="@+id/tv_invade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/g_medium"
+        android:text="OFF"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_invade"
+        app:layout_constraintStart_toStartOf="@+id/img_invade"
+        app:layout_constraintTop_toBottomOf="@+id/img_rec" />
 
     <TextView
         android:id="@+id/textView3"

@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 public class InvadeAlarmService extends Service {
     NotificationManager Notifi_M;
-    ServiceThread thread;
+    Service2Thread thread;
     Notification.Builder Notifi;
     RequestQueue requestQueue;
     NotificationChannel notificationChannel;
@@ -49,7 +49,7 @@ public class InvadeAlarmService extends Service {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH);
             notificationChannel.setDescription("channel description");
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.GREEN);
@@ -59,7 +59,7 @@ public class InvadeAlarmService extends Service {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        thread = new ServiceThread(handler);
+        thread = new Service2Thread(handler);
         thread.start();
         return START_STICKY;
     }
@@ -150,31 +150,7 @@ public class InvadeAlarmService extends Service {
             );
 
             requestQueue.add(request);
-            // 통신(eg. Volley)을 통해 데이터 받아오기
-            // 데이터를 쭉 보면서 값 확인하기
-            // 값안에 특정 조건 -> if()문 확인
-            /*Notifi = new Notification.Builder(getApplicationContext())
-                    .setContentTitle("Content Title")
-                    .setContentText("Content Text")
-                    .setSmallIcon(R.drawable.start)
-                    .setTicker("알림!!!")
-                    .setContentIntent(pendingIntent)
-                    .build();
 
-            //소리추가
-            Notifi.defaults = Notification.DEFAULT_SOUND;
-
-            //알림 소리를 한번만 내도록
-            Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
-
-            //확인하면 자동으로 알림이 제거 되도록
-            Notifi.flags = Notification.FLAG_AUTO_CANCEL;
-
-
-            Notifi_M.notify( 777 , Notifi);
-
-            //토스트 띄우기
-            Toast.makeText(AlarmService.this, "뜸?", Toast.LENGTH_LONG).show();*/
         }
     }
 

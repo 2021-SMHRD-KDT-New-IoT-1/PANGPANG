@@ -55,14 +55,17 @@ public class main extends Fragment {
 
     private ImageButton btn_led;
     private ImageButton btn_co;
+    private ImageButton btn_invade;
 
     private TextView tv_led;
     private TextView tv_co;
     private TextView tv_progress;
     private TextView tv_COdt;
+    private TextView tv_invade;
 
     private ImageView img_led;
     private ImageView img_rec;
+    private ImageView img_invade;
 
     private TextView tv_gps;
     private TextView tv_temp;
@@ -85,8 +88,12 @@ public class main extends Fragment {
     private int coLv1 = Color.parseColor("#00ff62"), coLv2 = Color.parseColor("#fff700"), coLv3 = Color.parseColor("#ff0400");
 
     private Drawable bg2;
+    private Drawable bg3;
+
     private Boolean check_spf;
-    SharedPreferences spf;
+    private Boolean check_spf2;
+
+    private SharedPreferences spf;
 
 
     final static String ip = "project-student-6.ddns.net/pang_Com";
@@ -99,14 +106,17 @@ public class main extends Fragment {
 
         btn_led = v.findViewById(R.id.btn_led);
         btn_co = v.findViewById(R.id.btn_co);
+        btn_invade = v.findViewById(R.id.btn_invade);
 
         tv_led = v.findViewById(R.id.tv_led);
         tv_co = v.findViewById(R.id.tv_co);
         tv_progress = v.findViewById(R.id.tv_progress);
         tv_COdt = v.findViewById(R.id.tv_COdt);
+        tv_invade = v.findViewById(R.id.tv_invade);
 
         img_led = v.findViewById(R.id.img_led);
         img_rec = v.findViewById(R.id.img_rec);
+        img_invade = v.findViewById(R.id.img_invade);
 
         tv_gps = v.findViewById(R.id.tv_gps);
         tv_temp = v.findViewById(R.id.tv_temp);
@@ -116,6 +126,7 @@ public class main extends Fragment {
         geocoder = new Geocoder(getContext());
 
         bg2 = btn_co.getBackground();
+        bg3 = btn_invade.getBackground();
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getContext());
@@ -123,13 +134,23 @@ public class main extends Fragment {
 
         spf = getActivity().getSharedPreferences("spf", Context.MODE_PRIVATE);
 
-        check_spf = spf.getBoolean("check",false);
+        check_spf = spf.getBoolean("check", false);
+        check_spf2 = spf.getBoolean("check2", false);
+
 
         if (check_spf) {
-            bg2.setTint(Color.parseColor("#D50000"));
+            bg2.setTint(Color.parseColor("#8BC34A"));
             img_rec.setImageResource(R.drawable.background_cylinder3);
             tv_co.setText("ON");
-            tv_co.setTextColor(Color.parseColor("#D50000"));
+            tv_co.setTextColor(Color.parseColor("#8BC34A"));
+            check = "on";
+        }
+
+        if (check_spf2) {
+            bg3.setTint(Color.parseColor("#F44336"));
+            img_invade.setImageResource(R.drawable.background_cylinder3);
+            tv_invade.setText("ON");
+            tv_invade.setTextColor(Color.parseColor("#F44336"));
             check = "on";
         }
 
@@ -143,7 +164,7 @@ public class main extends Fragment {
         } else {
             String locationProvider = LocationManager.NETWORK_PROVIDER;
             Location location = lm.getLastKnownLocation(locationProvider);
- //         String provider = location.getProvider();
+            //         String provider = location.getProvider();
             lon = location.getLongitude();
             lat = location.getLatitude();
             // double altitude = location.getAltitude(); 해수면 코드(무쓸모)
@@ -168,7 +189,7 @@ public class main extends Fragment {
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
 
-        // 날씨 기능 ----------------------------------------------------------------------------
+            // 날씨 기능 ----------------------------------------------------------------------------
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=6aee37853bd0ce95c4064a9a2184045d";
 
             StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -269,11 +290,70 @@ public class main extends Fragment {
             }
         });
 
+        // 침임자 감지 기능 버튼 -----------------------------------------------------------------------
+        btn_invade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (check_spf2) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("침입자 감지");
+                    builder.setMessage("침입자 감지를 끄겠습니까?");
+                    builder.setPositiveButton("취소", null);
+                    builder.setNegativeButton("끄기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            check_spf2 = false;
+
+                            SharedPreferences.Editor edit = spf.edit();
+                            edit.putBoolean("check2", check_spf2);
+                            edit.commit();
+
+                            Toast.makeText(getContext(), "침입자 감지 종료", Toast.LENGTH_SHORT).show();
+
+                            bg3.setTint(Color.parseColor("#FFFFFF"));
+                            img_invade.setImageResource(R.drawable.background_cylinder2);
+                            tv_invade.setText("OFF");
+                            tv_invade.setTextColor(Color.parseColor("#FFFFFF"));
+
+                            Intent intent = new Intent(getContext(), InvadeAlarmService.class);
+                            getActivity().stopService(intent);
+                        }
+                    });
+                    builder.create().show();
+                } else if (!check_spf2) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("침입자 감지");
+                    builder.setMessage("침입자 감지를 켜시겠습니까?");
+                    builder.setPositiveButton("취소", null);
+                    builder.setNegativeButton("켜기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            check_spf2 = true;
+
+                            SharedPreferences.Editor edit = spf.edit();
+                            edit.putBoolean("check2", check_spf2);
+                            edit.commit();
+                            Toast.makeText(getContext(), "침입자 감지 시작", Toast.LENGTH_SHORT).show();
+
+                            bg3.setTint(Color.parseColor("#F44336"));
+                            img_invade.setImageResource(R.drawable.background_cylinder3);
+                            tv_invade.setText("ON");
+                            tv_invade.setTextColor(Color.parseColor("#F44336"));
+
+                            Intent serviceIntent = new Intent(getContext(), InvadeAlarmService.class);
+                            getActivity().startService(serviceIntent);
+                        }
+                    });
+                    builder.create().show();
+                }
+            }
+        });
+
         // 일산화탄소 기능 버튼 -----------------------------------------------------------------------
         btn_co.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check_spf) {
+                if (check_spf) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("일산화탄소 감시");
                     builder.setMessage("일산화탄소 감시를 끄겠습니까?");
@@ -287,14 +367,14 @@ public class main extends Fragment {
                             edit.putBoolean("check", check_spf);
                             edit.commit();
 
-                            Toast.makeText(getContext(),"일산화탄소 감시 종료",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "일산화탄소 감시 종료", Toast.LENGTH_SHORT).show();
 
                             bg2.setTint(Color.parseColor("#FFFFFF"));
                             img_rec.setImageResource(R.drawable.background_cylinder2);
                             tv_co.setText("OFF");
                             tv_co.setTextColor(Color.parseColor("#FFFFFF"));
 
-                            Intent intent = new Intent(getContext(),AlarmService.class);
+                            Intent intent = new Intent(getContext(), AlarmService.class);
                             getActivity().stopService(intent);
                         }
                     });
@@ -312,12 +392,12 @@ public class main extends Fragment {
                             SharedPreferences.Editor edit = spf.edit();
                             edit.putBoolean("check", check_spf);
                             edit.commit();
-                            Toast.makeText(getContext(),"일산화탄소 감시 시작",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "일산화탄소 감시 시작", Toast.LENGTH_SHORT).show();
 
-                            bg2.setTint(Color.parseColor("#D50000"));
+                            bg2.setTint(Color.parseColor("#8BC34A"));
                             img_rec.setImageResource(R.drawable.background_cylinder3);
                             tv_co.setText("ON");
-                            tv_co.setTextColor(Color.parseColor("#D50000"));
+                            tv_co.setTextColor(Color.parseColor("#8BC34A"));
 
                             Intent serviceIntent = new Intent(getContext(), AlarmService.class);
                             getActivity().startService(serviceIntent);
